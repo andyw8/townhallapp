@@ -10,10 +10,10 @@ group :development do
 end
 
 group :development, :test do
+  gem 'capybara'
   gem 'cucumber-rails'
+  gem 'database_cleaner' # needed by cucumber
+  gem 'mocha' # needed by nifty-generators
   gem 'rspec-rails'
   gem 'sqlite3'
-  gem 'capybara'
-  gem 'database_cleaner' # required for Cucumber
 end
-

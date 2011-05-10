@@ -75,6 +75,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     nifty-generators (0.4.6)
     nokogiri (1.4.4)
     polyglot (0.3.1)
@@ -136,6 +137,7 @@ DEPENDENCIES
   database_cleaner
   haml
   inherited_resources
+  mocha
   nifty-generators
   rails (= 3.0.7)
   rspec-rails
