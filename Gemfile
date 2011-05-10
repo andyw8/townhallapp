@@ -13,6 +13,7 @@ group :development, :test do
   gem 'capybara'
   gem 'cucumber-rails'
   gem 'database_cleaner' # needed by cucumber
+  gem 'factory_girl_rails'
   gem 'mocha' # needed by nifty-generators
   gem 'rspec-rails'
   gem 'shoulda'
