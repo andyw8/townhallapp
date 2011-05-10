@@ -6,7 +6,7 @@ class SeriesController < ApplicationController
   def create
     @series = Series.new(params[:series])
     if @series.save
-      redirect_to @series, :notice => "Successfully created series."
+      redirect_to series_index_path, :notice => "Successfully created series."
     else
       render :action => 'new'
     end
