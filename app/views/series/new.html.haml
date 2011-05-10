@@ -1,0 +1,13 @@
+- title "New Series"
+
+= form_for @series do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.submit
+
+
+%p= link_to "Back to List", series_index_path

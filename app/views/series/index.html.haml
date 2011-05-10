@@ -1,0 +1,7 @@
+- title "Series"
+
+%ul
+  - for series in @series
+    %li= series.name
+
+%p= link_to "New Series", new_series_path
