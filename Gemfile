@@ -15,5 +15,6 @@ group :development, :test do
   gem 'database_cleaner' # needed by cucumber
   gem 'mocha' # needed by nifty-generators
   gem 'rspec-rails'
+  gem 'shoulda'
   gem 'sqlite3'
 end
