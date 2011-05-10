@@ -13,5 +13,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'capybara'
+  gem 'database_cleaner' # required for Cucumber
 end
 
