@@ -1,4 +1,5 @@
 Feature: Add Series
+
   In order to collect submissions
   a moderator
   wants to create a series
