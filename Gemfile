@@ -5,6 +5,7 @@ gem 'simple_form'
 
 group :development do
   gem 'nifty-generators'
+  gem 'launchy' # used for cucumber debugging
 end
 
 group :development, :test do
