@@ -1,0 +1,12 @@
+- title "New Submission"
+
+= form_for [@series, @submission] do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.submit
+
+

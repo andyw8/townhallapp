@@ -30,3 +30,6 @@ Feature: Add Series
     When I press "Create Series"
     Then I should see "Name can't be blank"
     And 0 series should exist
+
+  Scenario: Viewing a series
+    Pending

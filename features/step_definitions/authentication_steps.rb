@@ -14,3 +14,7 @@ end
 Given /^I am authenticated as "([^"]*)"$/ do |email|
   register_and_authenticate email
 end
+
+Given /^I am not authenticated$/ do
+  visit destroy_user_session_path
+end

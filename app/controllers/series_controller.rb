@@ -1,6 +1,6 @@
 class SeriesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
     @series = Series.new
@@ -17,5 +17,9 @@ class SeriesController < ApplicationController
 
   def index
     @series = Series.all
+  end
+
+  def show
+    @series = Series.find(params[:id])
   end
 end

@@ -4,5 +4,7 @@ Townhallapp::Application.routes.draw do
 
   root :to => "series#index"
 
-  resources :series, :only => [:index, :create, :new]
+  resources :series, :only => [:index, :create, :new, :show] do
+    resources :submissions, :only => [:new, :create, :index]
+  end
 end

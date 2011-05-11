@@ -1,0 +1,8 @@
+- title "Submissions"
+
+%ul
+  - for submission in @submissions
+    %li= submission.name
+
+- if user_signed_in?
+  %p= link_to "New Submission", new_series_submission_path(@series)
