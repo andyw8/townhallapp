@@ -6,4 +6,4 @@ rvm:
 script: "bundle exec rake db:drop db:create db:migrate; bundle exec rake"
 
 # Specify an ENV variable to run before: 'bundle install' and 'rake' (or your defined 'script')
-env: "RAILS_ENV='test'"
+#env: "RAILS_ENV='test'"
