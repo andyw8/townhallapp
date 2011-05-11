@@ -3,7 +3,7 @@ rvm:
   - 1.9.2
 
 # Define how to run your tests (will default to just running rake)
-script: "bundle exec rake db:drop db:create db:migrate; bundle exec rake"
+script: "bundle exec rake db:drop db:create db:migrate RAILS_ENV='test'; bundle exec rake RAILS_ENV='test'"
 
 # Specify an ENV variable to run before: 'bundle install' and 'rake' (or your defined 'script')
 #env: "RAILS_ENV='test'"
