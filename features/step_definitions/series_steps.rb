@@ -1,3 +1,7 @@
+Given /^no series exist$/ do
+  Series.delete_all
+end
+
 Given /^I am creating a new series$/ do
   visit new_series_path
 end
@@ -15,3 +19,6 @@ Then /^(\d+) series should exist$/ do |count|
   page.all('ul li').size.should be(count.to_i)
 end
 
+Then /^the series owner of "([^"]*)" should be shown as "([^"]*)"$/ do |series_name, email|
+  page.should have_content("#{series_name} (#{email})")
+end

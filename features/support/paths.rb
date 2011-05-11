@@ -6,6 +6,8 @@ module NavigationHelpers
       '/'
     when 'the the series index page'
       series_index_path
+    when 'the sign-in page'
+      new_user_session_path
     else
       begin
         page_name =~ /the (.*) page/

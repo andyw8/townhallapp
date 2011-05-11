@@ -2,6 +2,6 @@
 
 %ul
   - for series in @series
-    %li= series.name
+    %li= "#{series.name} (#{series.user.email})"
 
 %p= link_to "New Series", new_series_path
