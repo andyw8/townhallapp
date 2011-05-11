@@ -1,3 +1,5 @@
+source :rubygems
+
 gem 'haml'
 gem 'devise'
 gem 'rails', '3.0.7'
