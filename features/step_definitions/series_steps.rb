@@ -1,7 +1,14 @@
+def create_series
+  @series = Factory.create(:series)
+end
+
+def view_series(series)
+  visit "/series/#{series.id}"
+end
+
 def create_and_visit_series
-  some_user = User.create!(:email => 'andy@example.com', :password => 'hello1')
-  @series = some_user.series.create!(:name => 'My Series')
-  visit "/series/#{@series.id}"
+  create_series
+  view_series(@series)
 end
 
 def verify_series_count(count)
@@ -11,6 +18,20 @@ end
 
 Given /^I am viewing a series$/ do
   create_and_visit_series
+end
+
+When /^I view the series "([^"]*)"$/ do |name|
+  @series = Series.find_by_name(name)
+  view_series(@series)
+end
+
+Given /^a series exists$/ do
+  @series = Factory.create(:series)
+end
+
+When /^I view that series$/ do
+  raise 'no series' unless @series
+  visit "/series/#{@series.id}/submissions"
 end
 
 Given /^no series exist$/ do

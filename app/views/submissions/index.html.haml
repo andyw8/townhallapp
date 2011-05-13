@@ -1,8 +1,13 @@
 - title "Submissions"
 
-%ul
-  - for submission in @submissions
-    %li= submission.name
+- if @submissions.any?
+
+  %ul
+    - for submission in @submissions
+      %li= submission.name
+
+- else
+  There are no submissions
 
 - if user_signed_in?
   %p= link_to "New Submission", new_series_submission_path(@series)
