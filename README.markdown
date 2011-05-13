@@ -1,7 +1,7 @@
 About
 =====
 
-Rails clone of Google Moderator
+Rails clone of Google Moderator. In early development stage.
 
 [![Build Status](http://travis-ci.org/andyw8/townhallapp.png)](http://travis-ci.org/andyw8/townhallapp)
 
