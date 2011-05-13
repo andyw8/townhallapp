@@ -102,6 +102,8 @@ GEM
       activesupport (= 3.0.7)
       bundler (~> 1.0)
       railties (= 3.0.7)
+    rails3-generators (0.17.4)
+      railties (>= 3.0.0)
     railties (3.0.7)
       actionpack (= 3.0.7)
       activesupport (= 3.0.7)
@@ -154,6 +156,7 @@ DEPENDENCIES
   launchy
   nifty-generators
   rails (= 3.0.7)
+  rails3-generators
   rspec-rails
   shoulda
   simple_form

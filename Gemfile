@@ -16,6 +16,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
+  gem 'rails3-generators'
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'sqlite3'
