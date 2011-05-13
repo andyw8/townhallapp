@@ -12,6 +12,7 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'chronic' # for easy date/time parsing
   gem 'cucumber-rails'
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
