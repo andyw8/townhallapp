@@ -7,7 +7,7 @@
       %li{:id => "submission-#{submission.id}"}
         %span.name= submission.name
         ="(#{pluralize(submission.votes.count, 'vote')})"
-        =vote_button(submission) if user_signed_in?
+        =vote_button(submission) if user_signed_in? && !submission.user_has_voted?(submission)
 
 - else
   There are no submissions

@@ -18,3 +18,7 @@ end
 Given /^I am not authenticated$/ do
   visit destroy_user_session_path
 end
+
+Given /^I have signed out$/ do
+  visit destroy_user_session_path
+end

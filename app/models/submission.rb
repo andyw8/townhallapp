@@ -11,4 +11,8 @@ class Submission < ActiveRecord::Base
 
   has_many :votes
 
+  def user_has_voted?(user)
+    votes.find(:first, :conditions => {:user_id => user}).present?
+  end
+
 end
