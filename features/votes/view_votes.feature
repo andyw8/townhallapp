@@ -8,16 +8,16 @@ Feature: View votes
     Given a series exists
     And that series has a submission "My Submission" with 0 votes
     When I view that series
-    Then I should see "My Submission (Score: 0)"
+    Then I should see "My Submission" with a score of "0"
 
   Scenario: A submission with one vote
     Given a series exists
     And that series has a submission "My Submission" with 1 votes
     When I view that series
-    Then I should see "My Submission (Score: 1)"
+    Then I should see "My Submission" with a score of "1"
 
   Scenario: A submission with several votes
     Given a series exists
     And that series has a submission "My Submission" with 3 votes
     When I view that series
-    Then I should see "My Submission (Score: 3)"
+    Then I should see "My Submission" with a score of "3"

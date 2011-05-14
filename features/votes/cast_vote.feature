@@ -19,7 +19,7 @@ Feature: Cast vote
     And that series has a submission "My Submission" with 0 votes
     When I view that series
     And I click the "Vote For" button next to "My Submission"
-    Then I should see "My Submission (Score: 1)"
+    Then I should see "My Submission" with a score of "1"
     And I should see "Your vote was recorded"
 
   Scenario: Attempting to re-vote for a submission
@@ -27,7 +27,7 @@ Feature: Cast vote
     And that series has a submission "My Submission" with 0 votes
     When I view that series
     And I click the "Vote For" button next to "My Submission"
-    Then I should see "My Submission (Score: 1)"
+    Then I should see "My Submission" with a score of "1"
     And I should not see a Vote button next to "My Submission"
 
   Scenario: Voting against a submission with series votes
@@ -35,5 +35,5 @@ Feature: Cast vote
     And that series has a submission "My Submission" with 0 votes
     When I view that series
     And I click the "Vote Against" button next to "My Submission"
-    Then I should see "My Submission (Score: -1)"
+    Then I should see "My Submission" with a score of "-1"
     And I should see "Your vote was recorded"

@@ -47,3 +47,10 @@ end
 Then /^(\d+) submissions should exist for that series$/ do |count|
   verify_submissions_count(Series.last, count.to_i)
 end
+
+Then /^I should see "([^"]*)" with a score of "([^"]*)"$/ do |submission_name, score|
+  submission = Submission.find_by_name(submission_name)
+  within("#submission-#{submission.id}") do
+    should have_css('.score .value', :text => score)
+  end
+end
