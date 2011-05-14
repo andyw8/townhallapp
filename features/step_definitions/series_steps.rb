@@ -68,5 +68,5 @@ end
 Then /^I should see the series in the order:$/ do |table|
   actual_series = table.raw.flatten
   expected_series = all('ul#series li a').collect(&:text)
-  expected_series.should match_array(actual_series)
+  expected_series.should == actual_series
 end
