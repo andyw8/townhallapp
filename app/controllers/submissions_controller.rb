@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_series
 
   def new
