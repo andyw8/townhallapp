@@ -2,10 +2,6 @@ class SubmissionsController < ApplicationController
 
   before_filter :find_series
 
-  def index
-    @submissions = @series.submissions.all
-  end
-
   def new
     @submission = @series.submissions.new
   end
