@@ -18,4 +18,19 @@ describe Vote do
     Factory.build(:vote, :vote => 'FOO').should_not be_valid
   end
 
+  it "is invalid with repeat vote from the same user" do
+    submission = Factory.create(:submission)
+    user = Factory.create(:user)
+    Factory.create(:vote, :user => user, :submission => submission)
+    Factory.build(:vote, :user => user, :submission => submission).should be_invalid
+  end
+
+  it "is valid with multiple votes from different users" do
+    submission = Factory.create(:submission)
+    user = Factory.create(:user)
+    another_user = Factory.create(:user)
+    Factory.create(:vote, :user => user, :submission => submission)
+    Factory.build(:vote, :user => another_user, :submission => submission).should be_valid
+  end
+
 end
