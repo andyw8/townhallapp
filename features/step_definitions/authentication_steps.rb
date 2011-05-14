@@ -1,18 +1,28 @@
-def register_and_authenticate(email)
-  visit new_user_registration_path
+PASSWORD = 'password'
+
+def create_account(email)
+  User.create!(
+    :email => email,
+    :password => PASSWORD,
+    :password_confirmation => PASSWORD)
+end
+
+def sign_in(email)
+  visit new_user_session_path
   fill_in 'Email', :with => email
-  fill_in 'Password', :with => 'hello1'
-  fill_in 'Password confirmation', :with => 'hello1'
-  click_button "Sign up"
-  page.should have_content('Welcome! You have signed up successfully.')
+  fill_in 'Password', :with => PASSWORD
+  click_button 'Sign in'
+  should have_content("Signed in successfully.")
 end
 
 Given /^I am authenticated$/ do
-  register_and_authenticate 'blah@testing.com'
+  create_account 'blah@testing.com'
+  sign_in 'blah@testing.com'
 end
 
 Given /^I am authenticated as "([^"]*)"$/ do |email|
-  register_and_authenticate email
+  create_account email
+  sign_in email
 end
 
 Given /^I am not authenticated$/ do
