@@ -4,9 +4,10 @@
 
   %ul
     - for submission in @series.submissions
-      %li
-        .name= submission.name
-        = "(#{pluralize(submission.votes.count, 'vote')})"
+      %li{:id => "submission-#{submission.id}"}
+        %span.name= submission.name
+        ="(#{pluralize(submission.votes.count, 'vote')})"
+        =vote_button(submission)
 
 - else
   There are no submissions

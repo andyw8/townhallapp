@@ -5,3 +5,9 @@ Given /^that series has a submission "([^"]*)" with (\d+) votes/ do |submission_
   end
 end
 
+When /^I click the vote button next to "([^"]*)"$/ do |submission_name|
+  submission = Submission.find_by_name(submission_name)
+  within("#submission-#{submission.id}") do
+    click_button 'Vote'
+  end
+end
