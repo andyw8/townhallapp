@@ -1,16 +1,16 @@
 def view_submissions_for_a_series
   @series = Factory(:series)
-  visit "/series/#{@series.id}/submissions"
+  visit "/series/#{@series.id}"
 end
 
 def verify_submissions_count(count)
-  visit series_submissions_path(@series)
+  visit series_path(@series)
   page.all('ul li').length.should be(count)
 end
 
 Given /^I am creating a new submission for a series$/ do
   @series = Factory(:series)
-  visit series_submissions_path(@series)
+  visit series_path(@series)
   click_link "New Submission"
 end
 

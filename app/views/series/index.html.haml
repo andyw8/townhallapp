@@ -2,6 +2,6 @@
 
 %ul
   - for series in @series
-    %li= link_to("#{series.name} (#{series.user.email})", series_submissions_path(series))
+    %li= link_to("#{series.name} (#{series.user.email})", series_path(series))
 
 %p= link_to "New Series", new_series_path

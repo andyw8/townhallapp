@@ -31,7 +31,7 @@ end
 
 When /^I view that series$/ do
   raise 'no series' unless @series
-  visit "/series/#{@series.id}/submissions"
+  visit "/series/#{@series.id}"
 end
 
 Given /^no series exist$/ do
