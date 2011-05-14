@@ -1,0 +1,17 @@
+Feature: View votes
+
+  In order to change the world
+  a citizen
+  wants to vote for a submission
+
+  Scenario: A submission with no votes
+    Given a series exists
+    And that series has a submission "My Submission" with 0 votes
+    When I view that series
+    Then I should see "My Submission (0 votes)"
+
+  Scenario: A submission with one vote
+    Given a series exists
+    And that series has a submission "My Submission" with 1 votes
+    When I view that series
+    Then I should see "My Submission (1 vote)"

@@ -9,4 +9,6 @@ class Submission < ActiveRecord::Base
   belongs_to :series
   belongs_to :user
 
+  has_many :votes
+
 end

@@ -33,7 +33,7 @@ end
 
 Then /^I should see the submissions in the order:$/ do |table|
   actual_submissions = table.raw.flatten
-  expected_submissions = page.all('ul li').collect(&:text)
+  expected_submissions = page.all('ul li .name').collect(&:text)
   expected_submissions.should == actual_submissions
 end
 
