@@ -25,7 +25,6 @@ Feature: View Series
       | Submission A |
       | Submission C |
 
-  @wip
   Scenario: Submission visibility when viewing a series
 
     The series should only shown submissions which are part of that series.
