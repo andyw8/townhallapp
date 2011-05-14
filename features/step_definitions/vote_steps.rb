@@ -5,12 +5,13 @@ Given /^that series has a submission "([^"]*)" with (\d+) votes/ do |submission_
   end
 end
 
-When /^I click the vote button next to "([^"]*)"$/ do |submission_name|
+When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submission_name|
   submission = Submission.find_by_name(submission_name)
   within("#submission-#{submission.id}") do
-    click_button 'Vote'
+    click_button button_label
   end
 end
+
 
 Then /^I should not see any vote buttons$/ do
   all('input[value="Vote"]').should be_empty

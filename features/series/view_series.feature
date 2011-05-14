@@ -10,7 +10,6 @@ Feature: View Series
     When I view that series
     Then I should see "There are no submissions"
 
-  @current
   Scenario: Order of series
 
     Should be displayed newest first

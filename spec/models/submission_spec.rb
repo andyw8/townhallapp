@@ -16,6 +16,32 @@ describe Submission do
 
     describe "#user_has_voted?" do
 
+      it "should have a default score of 0" do
+        @submission.score.should be(0)
+      end
+
+      it "should have a score of 2 for two PLUS votes" do
+        2.times do
+          Factory.create(:vote, :vote => 'PLUS', :submission => @submission)
+        end
+        @submission.score.should be(2)
+      end
+
+      it "should have a score of -2 for two MINUS votes" do
+        2.times do
+          Factory.create(:vote, :vote => 'MINUS', :submission => @submission)
+        end
+        @submission.score.should be(-2)
+      end
+
+      it "should have a net score of 0 for two PLUS votes and two MINUS votes" do
+        2.times do
+          Factory.create(:vote, :vote => 'PLUS', :submission => @submission)
+          Factory.create(:vote, :vote => 'MINUS', :submission => @submission)
+        end
+        @submission.score.should be(0)
+      end
+
       it "should be true if the user has voted on that submission" do
         user = Factory.create(:user)
         Factory.create(:vote, :submission => @submission, :user => user)

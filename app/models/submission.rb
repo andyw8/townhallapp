@@ -19,4 +19,8 @@ class Submission < ActiveRecord::Base
     user_signed_in && !user_has_voted?(user)
   end
 
+  def score
+    votes.plus.count - votes.minus.count
+  end
+
 end
