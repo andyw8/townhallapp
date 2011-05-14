@@ -3,11 +3,11 @@ class SubmissionsController < ApplicationController
   before_filter :find_series
 
   def index
-    @submissions = Submission.all
+    @submissions = @series.submissions.all
   end
 
   def new
-    @submission = Submission.new
+    @submission = @series.submissions.new
   end
 
   def create
