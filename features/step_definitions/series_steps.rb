@@ -16,6 +16,14 @@ def verify_series_count(count)
   page.all('ul li').size.should be(count)
 end
 
+Given /^the following series:$/ do |table|
+  table.hashes.each do |hash|
+    Factory.create(:series,
+      :name => hash['name'],
+      :created_at => Chronic.parse(hash['created']))
+  end
+end
+
 Given /^I am viewing a series$/ do
   create_and_visit_series
 end
@@ -32,6 +40,10 @@ end
 When /^I view that series$/ do
   raise 'no series' unless @series
   visit "/series/#{@series.id}"
+end
+
+When /^I view the series index$/ do
+  visit series_index_path
 end
 
 Given /^no series exist$/ do
@@ -56,4 +68,10 @@ end
 
 Then /^the series owner of "([^"]*)" should be shown as "([^"]*)"$/ do |series_name, email|
   page.should have_content("#{series_name} (#{email})")
+end
+
+Then /^I should see the series in the order:$/ do |table|
+  actual_series = table.raw.flatten
+  expected_series = page.all('ul#series li a').collect(&:text)
+  expected_series.should == actual_series
 end
