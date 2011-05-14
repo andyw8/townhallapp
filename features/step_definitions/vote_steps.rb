@@ -11,3 +11,7 @@ When /^I click the vote button next to "([^"]*)"$/ do |submission_name|
     click_button 'Vote'
   end
 end
+
+Then /^I should not see any vote buttons$/ do
+  all('input[value="Vote"]').should be_empty
+end
