@@ -1,10 +1,10 @@
 class Submission < ActiveRecord::Base
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'score DESC'
 
   attr_accessible :name
 
-  validates_presence_of :name, :user, :series
+  validates_presence_of :name, :user, :series, :score
 
   belongs_to :series
   belongs_to :user
@@ -19,7 +19,15 @@ class Submission < ActiveRecord::Base
     user_signed_in && !user_has_voted?(user)
   end
 
-  def score
+  def update_score
+    #update_attributes(:score, calculate_score)
+    self[:score] = calculate_score
+    save!
+  end
+
+  private
+
+  def calculate_score
     votes.plus.count - votes.minus.count
   end
 

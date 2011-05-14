@@ -10,6 +10,21 @@ Feature: View Series
     When I view that series
     Then I should see "There are no submissions"
 
+  Scenario: Order of submissions
+
+    The submissions with the highest score should appear first
+
+    Given a series with the following submissions:
+      | name         | score |
+      | Submission A | 0     |
+      | Submission B | 5     |
+      | Submission C | -5    |
+    When I view that series
+    Then I should see the submissions in the order:
+      | Submission B |
+      | Submission A |
+      | Submission C |
+
   Scenario: Order of series
 
     Should be displayed newest first

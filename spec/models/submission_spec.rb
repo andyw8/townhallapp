@@ -6,6 +6,7 @@ describe Submission do
     should validate_presence_of(:name)
     should validate_presence_of(:user)
     should validate_presence_of(:series)
+    should validate_presence_of(:score)
     should belong_to :user
     should belong_to :series
   end

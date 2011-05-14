@@ -13,4 +13,6 @@ class Vote < ActiveRecord::Base
   scope :plus, :conditions => "vote = 'PLUS'"
   scope :minus, :conditions => "vote = 'MINUS'"
 
+  after_save { |vote| vote.submission.update_score }
+
 end
