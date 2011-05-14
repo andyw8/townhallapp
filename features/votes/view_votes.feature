@@ -1,8 +1,8 @@
 Feature: View votes
 
-  In order to change the world
+  In order to see the popularity of submission
   a citizen
-  wants to vote for a submission
+  wants to see the number of votes for each submission
 
   Scenario: A submission with no votes
     Given a series exists
