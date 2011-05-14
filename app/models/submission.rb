@@ -15,4 +15,8 @@ class Submission < ActiveRecord::Base
     votes.find(:first, :conditions => {:user_id => user}).present?
   end
 
+  def allowed_to_vote?(user, user_signed_in)
+    user_signed_in && !user_has_voted?(user)
+  end
+
 end
