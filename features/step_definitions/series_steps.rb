@@ -8,7 +8,7 @@ end
 
 def verify_series_count(count)
   visit series_index_path
-  all('ul li').size.should be(count)
+  all('#series li').length.should be(count)
 end
 
 Given /^the following series:$/ do |table|

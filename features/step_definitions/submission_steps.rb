@@ -1,6 +1,6 @@
 def verify_submissions_count(series, count)
   visit series_path(series)
-  all('ul li').length.should be(count)
+  all('#submissions li').size.should be(count)
 end
 
 Given /^I am creating a new submission for a series$/ do
@@ -40,7 +40,7 @@ end
 
 Then /^I should see the submissions in the order:$/ do |table|
   actual_submissions = table.raw.flatten
-  expected_submissions = all('ul li .name').collect(&:text)
+  expected_submissions = all('#submissions .name').collect(&:text)
   expected_submissions.should == actual_submissions
 end
 

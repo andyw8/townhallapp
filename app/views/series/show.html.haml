@@ -2,7 +2,7 @@
 
 - if @series.submissions.any?
 
-  %ul.submissions
+  %ul#submissions
     - for submission in @series.submissions
       %li{:id => "submission-#{submission.id}"}
         %span.name= submission.name
