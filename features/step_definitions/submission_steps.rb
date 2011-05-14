@@ -1,6 +1,6 @@
 def verify_submissions_count(series, count)
   visit series_path(series)
-  all('#submissions li').size.should be(count)
+  all('#submissions li').should have(count).items
 end
 
 Given /^I am creating a new submission for a series$/ do
