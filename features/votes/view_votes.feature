@@ -15,3 +15,9 @@ Feature: View votes
     And that series has a submission "My Submission" with 1 votes
     When I view that series
     Then I should see "My Submission (1 vote)"
+
+  Scenario: A submission with several votes
+    Given a series exists
+    And that series has a submission "My Submission" with 3 votes
+    When I view that series
+    Then I should see "My Submission (3 votes)"
