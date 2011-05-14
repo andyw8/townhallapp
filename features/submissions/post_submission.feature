@@ -6,7 +6,7 @@ Feature: Post Submission
 
   Scenario: Adding a submission
     Given I am authenticated
-    And I am viewing the submissions for a series
+    And I am viewing a series
     When I follow "New Submission"
     And I fill in "Name" with "Spend more money on education"
     And I press "Create Submission"
@@ -23,5 +23,5 @@ Feature: Post Submission
 
   Scenario: Adding a submission when not authenticated
     Given I am not authenticated
-    And I am viewing the submissions for a series
+    And I am viewing a series
     Then I should not see "New Submission"
