@@ -22,23 +22,19 @@ describe Submission do
       end
 
       it "should have a score of 2 for two PLUS votes" do
-        2.times do
-          Factory.create(:vote, :vote => 'PLUS', :submission => submission)
-        end
+        2.times { Factory.create(:plus_vote, :submission => submission) }
         submission.score.should be(2)
       end
 
       it "should have a score of -2 for two MINUS votes" do
-        2.times do
-          Factory.create(:vote, :vote => 'MINUS', :submission => submission)
-        end
+        2.times { Factory.create(:minus_vote, :submission => submission) }
         submission.score.should be(-2)
       end
 
       it "should have a net score of 0 for two PLUS votes and two MINUS votes" do
         2.times do
-          Factory.create(:vote, :vote => 'PLUS', :submission => submission)
-          Factory.create(:vote, :vote => 'MINUS', :submission => submission)
+          Factory.create(:plus_vote, :submission => submission)
+          Factory.create(:minus_vote, :submission => submission)
         end
         submission.score.should be(0)
       end
