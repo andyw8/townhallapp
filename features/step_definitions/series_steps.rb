@@ -30,7 +30,11 @@ When /^I view the series "([^"]*)"$/ do |name|
 end
 
 Given /^a series exists$/ do
-  series = Factory.create(:series)
+  Factory.create(:series)
+end
+
+Given /^a series exists named "([^"]*)"$/ do |name|
+  Factory.create(:series, :name => name)
 end
 
 When /^I view that series$/ do

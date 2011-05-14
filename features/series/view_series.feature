@@ -4,6 +4,12 @@ Feature: View Series
   a citizen
   wants to browse the submission for a particular series
 
+  Scenario: Page and window title
+    Given a series exists named "My Series"
+    When I view that series
+    Then the page title should be "My Series"
+    And the window title should be "My Series"
+
   Scenario: Viewing a series with no submissions
     Given a series exists
     And no are no submissions for that series
