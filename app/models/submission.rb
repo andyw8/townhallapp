@@ -25,12 +25,14 @@ class Submission < ActiveRecord::Base
     save!
   end
 
-  def minus_votes
-    votes.minus.count
-  end
+  # plus_votes and minus_vote should probably use has_many with a scope
 
   def plus_votes
     votes.plus.count
+  end
+
+  def minus_votes
+    votes.minus.count
   end
 
   def author
