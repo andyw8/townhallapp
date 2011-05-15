@@ -15,6 +15,44 @@ describe Submission do
 
     let(:submission) { Factory.create(:submission) }
 
+    describe "#score" do
+      it "should handle positive scores" do
+        submission.stub(:plus_votes) { 2 }
+        submission.stub(:minus_votes) { 1 }
+        submission.update_score
+        submission.score.should == 1
+      end
+
+      it "should handle negative scores" do
+        submission.stub(:plus_votes) { 1 }
+        submission.stub(:minus_votes) { 2 }
+        submission.update_score
+        submission.score.should == -1
+      end
+    end
+
+    describe "#users" do
+
+      it "should return an empty array for a submission without any votes" do
+        submission.users.should be_empty
+      end
+
+      it "should return an array of users who voted" do
+        u1 = Factory.create(:user)
+        u2 = Factory.create(:user)
+        Factory.create(:vote, :user => u1, :submission => submission)
+        Factory.create(:vote, :user => u2, :submission => submission)
+        submission.users.should == [u1, u2]
+      end
+
+      it "should not include users who votes on a different submission" do
+        another_submission = Factory.create(:submission)
+        Factory.create(:vote, :submission => another_submission)
+        submission.users.should be_empty
+      end
+
+    end
+
     describe "#user_has_voted?" do
 
       it "should have a default score of 0" do

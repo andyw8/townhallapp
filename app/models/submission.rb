@@ -54,7 +54,7 @@ class Submission < ActiveRecord::Base
   private
 
   def calculate_score
-    votes.plus.count - votes.minus.count
+    plus_votes - minus_votes
   end
 
 end
