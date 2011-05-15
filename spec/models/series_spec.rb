@@ -34,9 +34,9 @@ describe Series do
 
     it "should determine how many unique users have participated it's submissions" do
       u1, u2, u3 = mock_model('User'), mock_model('User'), mock_model('User')
-      submission_1 = stub_model(Submission, :users => [u1, u2])
-      submission_2 = stub_model(Submission, :users => [u2, u3])
-      series.stub(:submissions) { [submission_1, submission_2] }
+      submission_1 = mock_model('Submission', :users => [u1, u2])
+      submission_2 = mock_model('Submission', :users => [u2, u3])
+      series.stub(:submissions).and_return([submission_1, submission_2])
       series.users_count.should be(3)
     end
 
