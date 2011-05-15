@@ -20,7 +20,8 @@ class Series < ActiveRecord::Base
   def users_count
     users = []
     submissions.each do |s|
-      users << s.users
+      # seems that += isn't permitted on an array
+      users = users + s.users
     end
     users.uniq.size
   end
