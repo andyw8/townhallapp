@@ -13,7 +13,7 @@ describe Submission do
 
   context "submission" do
 
-    let(:submission) { Factory.create(:submission) }
+    let(:submission) { Submission.new }
 
     describe "#score" do
       it "should handle positive scores" do

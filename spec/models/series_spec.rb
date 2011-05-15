@@ -10,7 +10,7 @@ describe Series do
 
   context "series" do
 
-    let(:series) { Factory.create(:series) }
+    let(:series) { Series.new }
 
     describe "#votes_count" do
 
