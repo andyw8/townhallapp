@@ -28,7 +28,7 @@ Given /^the following submissions for that series:$/ do |table|
   end
 end
 
-Given /^the following submissions:$/ do |table|
+Given /^the following submissions and series:$/ do |table|
   table.hashes.each do |hash|
     series = Factory.create(:series, :name => hash['series'])
     Factory.create(:submission,

@@ -20,7 +20,7 @@ Feature: View Series
 
     The series should only shown submissions which are part of that series.
 
-    Given the following submissions:
+    Given the following submissions and series:
       | name         | series   |
       | Submission A | Series 1 |
       | Submission B | Series 2 |
