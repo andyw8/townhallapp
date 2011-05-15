@@ -47,6 +47,6 @@ end
 
 Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_name, email|
   submission = Submission.find_by_name(submission_name)
-  should have_css("#submission-#{submission.id} .author", :text => email)
+  should have_css("#submission-#{submission.id} .author-name", :text => email)
 end
 

@@ -74,3 +74,18 @@ Then /^I should see the series in the order:$/ do |table|
   expected_series = all('ul#series li a').collect(&:text)
   expected_series.should == actual_series
 end
+
+When /^I create a new series$/ do
+  Factory.create(:series)
+end
+
+Then /^the stats for that series should be:$/ do |table|
+  visit series_index_path
+  values = table.rows_hash
+  series = Series.last
+  within("#series-#{series.id}") do
+    should have_css(".users .value", :text => values['users'])
+    should have_css(".votes .value", :text => values['votes'])
+    should have_css(".submissions .value", :text => values['submissions'])
+  end
+end

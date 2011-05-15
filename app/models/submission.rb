@@ -39,6 +39,18 @@ class Submission < ActiveRecord::Base
     user.email
   end
 
+  def votes_count
+    votes.count
+  end
+
+  def users
+    users = []
+    votes.each do |vote|
+      users << vote.user
+    end
+    users
+  end
+
   private
 
   def calculate_score

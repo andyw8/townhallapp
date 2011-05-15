@@ -9,4 +9,24 @@ class Series < ActiveRecord::Base
   belongs_to :user
   has_many :submissions
 
+  def votes_count
+    total = 0
+    submissions.each do |s|
+      total += s.votes_count
+    end
+    total
+  end
+
+  def users_count
+    users = []
+    submissions.each do |s|
+      users << s.users
+    end
+    users.uniq.size
+  end
+
+  def submissions_count
+    submissions.count
+  end
+
 end

@@ -1,4 +1,3 @@
-@curr
 Feature: Post Submission
 
   In order to change the world

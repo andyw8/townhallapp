@@ -2,8 +2,17 @@
 
 %ul#series
   - for series in @series
-    %li
+    %li{:id => "series-#{series.id}"}
       = link_to("#{series.name}", series_path(series))
       = "(#{series.user.email})"
+      %span.votes
+        Votes:
+        %span.value= series.votes_count
+      %span.users
+        Users:
+        %span.value= series.users_count
+      %span.submissions
+        Submissions:
+        %span.value= series.submissions_count
 
 %p= link_to "New Series", new_series_path
