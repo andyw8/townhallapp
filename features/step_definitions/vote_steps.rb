@@ -1,7 +1,23 @@
-Given /^that series has a submission "([^"]*)" with (\d+) votes/ do |submission_name, votes|
+Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Factory.create(:submission, :name => submission_name, :series => Series.last)
-  votes.to_i.times do
-    Factory.create(:vote, :submission => submission)
+  plus_votes.to_i.times do
+    Factory.create(:plus_vote, :submission => submission)
+  end
+  minus_votes.to_i.times do
+    Factory.create(:minus_vote, :submission => submission)
+  end
+end
+
+Then /^I should see "([^"]*)" with a (\d+) plus votes and (\d+) minus votes$/ do |arg1, arg2, arg3|
+  pending # express the regexp above with the code you wish you had
+end
+
+
+Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
+  submission = Submission.find_by_name(submission_name)
+  within("#submission-#{submission.id}") do
+    should have_css('.plus .value', :text => plus_votes)
+    should have_css('.minus .value', :text => minus_votes)
   end
 end
 
@@ -11,7 +27,6 @@ When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submis
     click_button button_label
   end
 end
-
 
 Then /^I should not see any vote buttons$/ do
   all('input[value="Vote"]').should be_empty

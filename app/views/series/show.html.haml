@@ -6,10 +6,12 @@
     - for submission in @series.submissions
       %li{:id => "submission-#{submission.id}"}
         %span.name= submission.name
-        %span.score
-          (Score:
-          %span.value= submission.score
-          )
+        %span.plus
+          For:
+          %span.value= submission.plus_votes
+        %span.minus
+          Against:
+          %span.value= submission.minus_votes
         // it would be better if we could just pass the current_user
         // as a parameter to the allowed_to_vote? method, but calling
         // user_signed_in? on that model doesn't work
