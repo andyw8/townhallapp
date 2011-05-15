@@ -3,6 +3,10 @@ def verify_submissions_count(series, count)
   all('#submissions li').should have(count).items
 end
 
+def verify_submission_author(submission, email)
+  should have_css("#submission-#{submission.id} .author-name", :text => email)
+end
+
 def verify_submissions_order(table)
   actual_submissions = table.raw.flatten
   expected_submissions = all('#submissions .name').collect(&:text)
@@ -47,6 +51,5 @@ end
 
 Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_name, email|
   submission = Submission.find_by_name(submission_name)
-  should have_css("#submission-#{submission.id} .author-name", :text => email)
+  verify_submission_author(submission, email)
 end
-
