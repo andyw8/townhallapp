@@ -10,31 +10,34 @@ describe Vote do
     should belong_to(:user)
   end
 
-  it "is valid with a vote of 'PLUS'" do
+  it "should be valid with a vote of 'PLUS'" do
     Factory.build(:vote, :vote => 'PLUS').should be_valid
   end
 
-  it "is valid with a vote of 'MINUS'" do
+  it "should be valid with a vote of 'MINUS'" do
     Factory.build(:vote, :vote => 'MINUS').should be_valid
   end
 
-  it "is invalid with a vote of 'FOO'" do
+  it "should be invalid with a vote of 'FOO'" do
     Factory.build(:vote, :vote => 'FOO').should_not be_valid
   end
 
-  it "is invalid with repeat vote from the same user" do
-    submission = Factory.create(:submission)
-    user = Factory.create(:user)
+  # These next two tests hit the database, which isn't ideal
+  # for a unit test, but the general consensus seems be that
+  # this is the best approach for testing a uniqueness constraint
+
+  it "should be invalid with repeat vote from the same user" do
+    submission = Factory.build(:submission)
+    user = Factory.build(:user)
     Factory.create(:vote, :user => user, :submission => submission)
     Factory.build(:vote, :user => user, :submission => submission).should be_invalid
   end
 
-  it "is valid with multiple votes from different users" do
-    submission = Factory.create(:submission)
-    user = Factory.create(:user)
-    another_user = Factory.create(:user)
-    Factory.create(:vote, :user => user, :submission => submission)
-    Factory.build(:vote, :user => another_user, :submission => submission).should be_valid
+  it "should be valid with multiple votes from different users" do
+    submission = Factory.build(:submission)
+    user = Factory.build(:user)
+    Factory.create(:vote, :submission => submission) # vote from another user
+    Factory.build(:vote, :user => user, :submission => submission).should be_valid
   end
 
 end
