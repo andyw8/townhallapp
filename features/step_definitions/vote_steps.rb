@@ -8,10 +8,13 @@ Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) m
   end
 end
 
+Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
+  submission = Factory.create(:submission, :name => submission_name, :series => Series.last)
+end
+
 Then /^I should see "([^"]*)" with a (\d+) plus votes and (\d+) minus votes$/ do |arg1, arg2, arg3|
   pending # express the regexp above with the code you wish you had
 end
-
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
