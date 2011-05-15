@@ -8,6 +8,8 @@ gem 'simple_form'
 group :development do
   gem 'nifty-generators'
   gem 'launchy' # used for cucumber debugging
+  gem 'ruby-fsevent'
+  gem 'watchr'
 end
 
 group :development, :test do
@@ -18,8 +20,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rails3-generators'
   gem 'rspec-rails'
-  gem 'ruby-fsevent'
   gem 'shoulda'
   gem 'sqlite3'
-  gem 'watchr'
 end
