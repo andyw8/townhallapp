@@ -28,13 +28,6 @@ Given /^the following submissions for that series:$/ do |table|
   end
 end
 
-Given /^a series with the following submissions:$/ do |table|
-  series = Factory.create(:series)
-  table.hashes.each do |hash|
-    submission = Factory.create(:submission, :name => hash['name'], :series => series, :score => hash['score'].to_i)
-  end
-end
-
 Given /^the following submissions:$/ do |table|
   table.hashes.each do |hash|
     series = Factory.create(:series, :name => hash['series'])
