@@ -33,6 +33,10 @@ class Submission < ActiveRecord::Base
     votes.plus.count
   end
 
+  def author
+    user.email
+  end
+
   private
 
   def calculate_score

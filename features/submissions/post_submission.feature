@@ -1,3 +1,4 @@
+@curr
 Feature: Post Submission
 
   In order to change the world
@@ -5,13 +6,14 @@ Feature: Post Submission
   wants to post a submission
 
   Scenario: Adding a submission
-    Given I am authenticated
+    Given I am authenticated as "james@example.com"
     And I am viewing a series
     When I follow "New Submission"
     And I fill in "Name" with "Spend more money on education"
     And I press "Create Submission"
     Then I should see "Successfully created submission"
     And 1 submissions should exist for that series
+    And I should see that the author of "Spend more money on education" is "james@example.com"
 
   Scenario: Adding a submission without a name
     Given I am authenticated
