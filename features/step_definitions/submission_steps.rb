@@ -3,6 +3,12 @@ def verify_submissions_count(series, count)
   all('#submissions li').should have(count).items
 end
 
+def verify_submissions_order(table)
+  actual_submissions = table.raw.flatten
+  expected_submissions = all('#submissions .name').collect(&:text)
+  expected_submissions.should == actual_submissions
+end
+
 Given /^I am creating a new submission for a series$/ do
   series = Factory(:series)
   visit series_path(series)
@@ -39,9 +45,7 @@ Given /^the following submissions:$/ do |table|
 end
 
 Then /^I should see the submissions in the order:$/ do |table|
-  actual_submissions = table.raw.flatten
-  expected_submissions = all('#submissions .name').collect(&:text)
-  expected_submissions.should == actual_submissions
+  verify_submissions_order(table)
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|

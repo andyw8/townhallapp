@@ -1,4 +1,3 @@
-@curr
 Feature: View votes
 
   In order to see the popularity of submission
