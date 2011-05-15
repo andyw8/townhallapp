@@ -15,14 +15,17 @@ def sign_in(email)
   should have_content("Signed in successfully.")
 end
 
+def create_account_and_sign_in(email)
+  create_account email
+  sign_in email
+end
+
 Given /^I am authenticated$/ do
-  create_account 'blah@testing.com'
-  sign_in 'blah@testing.com'
+  create_account_and_sign_in 'blah@testing.com'
 end
 
 Given /^I am authenticated as "([^"]*)"$/ do |email|
-  create_account email
-  sign_in email
+  create_account_and_sign_in email
 end
 
 Given /^I am not authenticated$/ do

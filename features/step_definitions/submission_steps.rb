@@ -7,10 +7,27 @@ def verify_submission_author(submission, email)
   should have_css("#submission-#{submission.id} .author-name", :text => email)
 end
 
-def verify_submissions_order(table)
-  actual_submissions = table.raw.flatten
+def verify_submissions_order(actual_submissions)
   expected_submissions = all('#submissions .name').collect(&:text)
   expected_submissions.should == actual_submissions
+end
+
+def create_submissions_for_series(submission_hashes, series)
+  submission_hashes.each do |hash|
+    Factory.create(:submission,
+      :name => hash['name'],
+      :created_at => Chronic.parse(hash['created']),
+      :series => series)
+  end
+end
+
+def create_submissions_and_series(hashes)
+  hashes.each do |hash|
+    series = Factory.create(:series, :name => hash['series'])
+    Factory.create(:submission,
+      :name => hash['name'],
+      :series => series)
+  end
 end
 
 Given /^I am creating a new submission for a series$/ do
@@ -24,25 +41,15 @@ Given /^no are no submissions for that series$/ do
 end
 
 Given /^the following submissions for that series:$/ do |table|
-  table.hashes.each do |hash|
-    Factory.create(:submission,
-      :name => hash['name'],
-      :created_at => Chronic.parse(hash['created']),
-      :series => Series.last)
-  end
+  create_submissions_for_series(table.hashes, Series.last)
 end
 
 Given /^the following submissions and series:$/ do |table|
-  table.hashes.each do |hash|
-    series = Factory.create(:series, :name => hash['series'])
-    Factory.create(:submission,
-      :name => hash['name'],
-      :series => series)
-  end
+  create_submissions_and_series(table.hashes)
 end
 
 Then /^I should see the submissions in the order:$/ do |table|
-  verify_submissions_order(table)
+  verify_submissions_order(table.raw.flatten)
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|

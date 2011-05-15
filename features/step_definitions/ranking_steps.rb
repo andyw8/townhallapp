@@ -11,5 +11,5 @@ end
 
 Then /^the submissions should be in the order:$/ do |table|
   visit series_path(Series.last)
-  verify_submissions_order(table)
+  verify_submissions_order(table.raw.flatten)
 end
