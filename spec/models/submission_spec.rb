@@ -55,10 +55,10 @@ describe Submission do
     end
 
     it "should be an array of users who voted when there are votes" do
-      vote_1, vote_2 = Vote.new, Vote.new
-      user_1, user_2 = User.new, User.new
-      vote_1.user = user_1
-      vote_2.user = user_2
+      user_1 = mock_model('User')
+      user_2 = mock_model('User')
+      vote_1 = mock_model('Vote', :user => user_1)
+      vote_2 = mock_model('Vote', :user => user_2)
       submission.stub(:votes).and_return([vote_1, vote_2])
       submission.users.should == [user_1, user_2]
     end
@@ -68,13 +68,13 @@ describe Submission do
   describe "#user_has_voted?" do
 
     it "should be true there is a vote from that user" do
-      submission.stub_chain("votes.find").and_return(Vote.new)
-      submission.user_has_voted?(User.new).should be_true
+      submission.stub_chain("votes.find").and_return(mock_model('Vote'))
+      submission.user_has_voted?(mock_model('User')).should be_true
     end
 
     it "should be false if there no votes from that user" do
       submission.stub_chain("votes.find").and_return(nil)
-      submission.user_has_voted?(User.new).should be_false
+      submission.user_has_voted?(mock_model('User')).should be_false
     end
 
   end
@@ -83,16 +83,16 @@ describe Submission do
 
     it "should be true if that user is signed in and hasn't already voted" do
       submission.stub_chain("votes.find").and_return(nil)
-      submission.allowed_to_vote?(User.new, true).should be_true
+      submission.allowed_to_vote?(mock_model('User'), true).should be_true
     end
 
     it "should be false if that user isn't signed in" do
-      submission.allowed_to_vote?(User.new, false).should be_false
+      submission.allowed_to_vote?(mock_model('User'), false).should be_false
     end
 
     it "should be false if that user has already voted" do
-      submission.stub_chain("votes.find").and_return(Vote.new)
-      submission.allowed_to_vote?(User.new, true).should be_false
+      submission.stub_chain("votes.find").and_return(mock_model('Vote'))
+      submission.allowed_to_vote?(mock_model('User'), true).should be_false
     end
 
   end
