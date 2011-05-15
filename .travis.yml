@@ -7,3 +7,5 @@ script: "bundle exec rake db:drop db:create db:migrate RAILS_ENV='test'; bundle 
 
 # Specify an ENV variable to run before: 'bundle install' and 'rake' (or your defined 'script')
 #env: "RAILS_ENV='test'"
+
+bundler_args: --without development test
