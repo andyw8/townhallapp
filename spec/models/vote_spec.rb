@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe Vote do
 
-  it do
-    should validate_presence_of(:user)
-    should validate_presence_of(:submission)
-    should validate_presence_of(:vote)
-    should belong_to(:submission)
-    should belong_to(:user)
-  end
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:submission) }
+  it { should validate_presence_of(:vote) }
+  it { should belong_to(:submission) }
+  it { should belong_to(:user) }
 
   it "should be valid with a vote of 'PLUS'" do
     Factory.build(:vote, :vote => 'PLUS').should be_valid

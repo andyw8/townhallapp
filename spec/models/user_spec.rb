@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe User do
 
-  it do
-    should have_many(:series)
-  end
+  it { should have_many(:series) }
 
 end
