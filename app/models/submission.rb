@@ -20,8 +20,7 @@ class Submission < ActiveRecord::Base
   end
 
   def update_score
-    #update_attributes(:score, calculate_score)
-    self[:score] = calculate_score
+    self[:score] = plus_votes - minus_votes
     save!
   end
 
@@ -49,12 +48,6 @@ class Submission < ActiveRecord::Base
       users << vote.user
     end
     users
-  end
-
-  private
-
-  def calculate_score
-    plus_votes - minus_votes
   end
 
 end
