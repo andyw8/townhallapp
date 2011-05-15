@@ -7,7 +7,7 @@ Feature: Ranking
   It's possible for a submission to a negative score.
 
   Scenario: Single plus vote
-    Given a series with the submissions:
+    Given a series with these submissions and votes:
       | name         | plus votes | minus votes |
       | Submission A | 0          | 0           |
       | Submission B | 1          | 0           |
@@ -17,7 +17,7 @@ Feature: Ranking
       | Submission A |
 
   Scenario: Single minus votes
-    Given a series with the submissions:
+    Given a series with these submissions and votes:
       | name         | plus votes | minus votes |
       | Submission A | 0          | 0           |
       | Submission B | 0          | 1           |
@@ -27,7 +27,7 @@ Feature: Ranking
       | Submission B |
 
   Scenario: Multiple minus votes
-    Given a series with the submissions:
+    Given a series with these submissions and votes:
       | name         | plus votes | minus votes |
       | Submission A | 0          | 2           |
       | Submission B | 0          | 1           |
@@ -37,7 +37,7 @@ Feature: Ranking
       | Submission A |
 
   Scenario: Multiple plus votes
-    Given a series with the submissions:
+    Given a series with these submissions and votes:
       | name         | plus votes | minus votes |
       | Submission A | 1          | 0           |
       | Submission B | 2          | 0           |
@@ -47,7 +47,7 @@ Feature: Ranking
       | Submission A |
 
   Scenario: Mix of plus and minus votes
-    Given a series with the submissions:
+    Given a series with these submissions and votes:
       | name         | plus votes | minus votes |
       | Submission A | 1          | 1           |
       | Submission B | 2          | 1           |

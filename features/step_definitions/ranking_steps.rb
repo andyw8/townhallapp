@@ -1,4 +1,4 @@
-Given /^a series with the submissions:$/ do |table|
+Given /^a series with these submissions and votes:$/ do |table|
   series = Factory.create(:series)
   table.hashes.each do |hash|
     submission = Factory.create(:submission, :series => series, :name => hash['name'])
