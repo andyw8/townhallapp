@@ -1,16 +1,16 @@
 PASSWORD = 'password'
 
-def create_account(email)
+def create_account(email, password=PASSWORD)
   User.create!(
     :email => email,
-    :password => PASSWORD,
-    :password_confirmation => PASSWORD)
+    :password => password,
+    :password_confirmation => password)
 end
 
-def sign_in(email)
+def sign_in(email, password=PASSWORD)
   visit new_user_session_path
   fill_in 'Email', :with => email
-  fill_in 'Password', :with => PASSWORD
+  fill_in 'Password', :with => password
   click_button 'Sign in'
   should have_content("Signed in successfully.")
 end
@@ -35,3 +35,18 @@ end
 Given /^I have signed out$/ do
   visit destroy_user_session_path
 end
+
+Given /^I am signed up as "([^"]*)"$/ do |email_and_password|
+  email = email_and_password.split('/').first
+  password = email_and_password.split('/').last
+  create_account(email, password)
+end
+
+Given /^I am signed in as "([^"]*)"$/ do |email_and_password|
+  email = email_and_password.split('/').first
+  password = email_and_password.split('/').last
+  create_account(email, password)
+  sign_in(email, password)
+end
+
+
