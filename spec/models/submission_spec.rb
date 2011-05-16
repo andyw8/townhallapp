@@ -55,10 +55,10 @@ describe Submission do
     end
 
     it "should return array of unique users who voted when there are votes" do
-      user_1 = mock_model('User')
-      user_2 = mock_model('User')
-      vote_1 = mock_model('Vote', :user => user_1)
-      vote_2 = mock_model('Vote', :user => user_2)
+      user_1 = mock('User')
+      user_2 = mock('User')
+      vote_1 = mock('Vote', :user => user_1)
+      vote_2 = mock('Vote', :user => user_2)
       submission.stub(:votes).and_return([vote_1, vote_2])
       submission.users.should == [user_1, user_2]
     end
@@ -68,13 +68,13 @@ describe Submission do
   describe "#user_has_voted?" do
 
     it "should return true when there is a vote from that user" do
-      submission.stub_chain("votes.find").and_return(mock_model('Vote'))
-      submission.user_has_voted?(mock_model('User')).should be_true
+      submission.stub_chain("votes.find").and_return(mock('Vote'))
+      submission.user_has_voted?(mock('User')).should be_true
     end
 
     it "should return false when there are no votes from that user" do
       submission.stub_chain("votes.find").and_return(nil)
-      submission.user_has_voted?(mock_model('User')).should be_false
+      submission.user_has_voted?(mock('User')).should be_false
     end
 
   end
@@ -83,16 +83,16 @@ describe Submission do
 
     it "should return true when that user is signed in and hasn't already voted" do
       submission.stub_chain("votes.find").and_return(nil)
-      submission.allowed_to_vote?(mock_model('User'), true).should be_true
+      submission.allowed_to_vote?(mock('User'), true).should be_true
     end
 
     it "should return false when that user isn't signed in" do
-      submission.allowed_to_vote?(mock_model('User'), false).should be_false
+      submission.allowed_to_vote?(mock('User'), false).should be_false
     end
 
     it "should return false when that user has already voted" do
-      submission.stub_chain("votes.find").and_return(mock_model('Vote'))
-      submission.allowed_to_vote?(mock_model('User'), true).should be_false
+      submission.stub_chain("votes.find").and_return(mock('Vote'))
+      submission.allowed_to_vote?(mock('User'), true).should be_false
     end
 
   end
