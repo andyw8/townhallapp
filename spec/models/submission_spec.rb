@@ -13,7 +13,7 @@ describe Submission do
 
   describe "#update_score" do
 
-    it "should set the score to 0 when there are no PLUS votes and no MINUS votes" do
+    it "should set the score to 0 when there are no votes" do
       submission.stub_chain("votes.plus.count").and_return(0)
       submission.stub_chain("votes.minus.count").and_return(0)
       submission.should_receive(:save!)
@@ -49,12 +49,12 @@ describe Submission do
 
   describe "#users" do
 
-    it "should be an empty array if there are no votes" do
+    it "should return an empty array when there are no votes" do
       submission.stub(:votes).and_return([])
       submission.users.should be_empty
     end
 
-    it "should be an array of users who voted when there are votes" do
+    it "should return array of unique users who voted when there are votes" do
       user_1 = mock_model('User')
       user_2 = mock_model('User')
       vote_1 = mock_model('Vote', :user => user_1)
@@ -67,12 +67,12 @@ describe Submission do
 
   describe "#user_has_voted?" do
 
-    it "should be true there is a vote from that user" do
+    it "should return true when there is a vote from that user" do
       submission.stub_chain("votes.find").and_return(mock_model('Vote'))
       submission.user_has_voted?(mock_model('User')).should be_true
     end
 
-    it "should be false if there no votes from that user" do
+    it "should return false when there are no votes from that user" do
       submission.stub_chain("votes.find").and_return(nil)
       submission.user_has_voted?(mock_model('User')).should be_false
     end
@@ -81,16 +81,16 @@ describe Submission do
 
   describe "#allowed_to_vote?" do
 
-    it "should be true if that user is signed in and hasn't already voted" do
+    it "should return true when that user is signed in and hasn't already voted" do
       submission.stub_chain("votes.find").and_return(nil)
       submission.allowed_to_vote?(mock_model('User'), true).should be_true
     end
 
-    it "should be false if that user isn't signed in" do
+    it "should return false when that user isn't signed in" do
       submission.allowed_to_vote?(mock_model('User'), false).should be_false
     end
 
-    it "should be false if that user has already voted" do
+    it "should return false when that user has already voted" do
       submission.stub_chain("votes.find").and_return(mock_model('Vote'))
       submission.allowed_to_vote?(mock_model('User'), true).should be_false
     end
