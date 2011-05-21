@@ -126,11 +126,6 @@ GEM
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.5.0)
-    rspec-rails (2.5.0)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      railties (~> 3.0)
-      rspec (~> 2.5.0)
     ruby-fsevent (0.2.1)
     rubyzip (0.9.4)
     selenium-webdriver (0.2.0)
@@ -170,7 +165,7 @@ DEPENDENCIES
   nifty-generators
   rails (= 3.0.7)
   rails3-generators
-  rspec-rails
+  rspec
   ruby-fsevent
   shoulda
   simple_form
