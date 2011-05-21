@@ -13,6 +13,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'activerecord-nulldb-adapter'
   gem 'capybara'
   gem 'chronic' # for easy date/time parsing
   gem 'cucumber-rails'
