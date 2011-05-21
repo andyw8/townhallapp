@@ -9,8 +9,7 @@ group :development do
   gem 'git-up'
   gem 'launchy' # used for cucumber debugging
   gem 'nifty-generators'
-  gem 'ruby-fsevent'
-  gem 'watchr'
+  gem 'watchr' # note that ruby-fsevent doesn't work in ruby 1.9
 end
 
 group :development, :test do
