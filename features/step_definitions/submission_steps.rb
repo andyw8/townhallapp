@@ -14,7 +14,7 @@ end
 
 def create_submissions_for_series(submission_hashes, series)
   submission_hashes.each do |hash|
-    Factory.create(:submission,
+    Factory(:submission,
       :name => hash['name'],
       :created_at => Chronic.parse(hash['created']),
       :series => series)
@@ -23,8 +23,8 @@ end
 
 def create_submissions_and_series(hashes)
   hashes.each do |hash|
-    series = Factory.create(:series, :name => hash['series'])
-    Factory.create(:submission,
+    series = Factory(:series, :name => hash['series'])
+    Factory(:submission,
       :name => hash['name'],
       :series => series)
   end
@@ -41,7 +41,7 @@ Given /^no are no submissions for that series$/ do
 end
 
 Given /^a submission exists$/ do
-  Factory.create(:submission)
+  Factory(:submission)
 end
 
 When /^I view that submission's series$/ do

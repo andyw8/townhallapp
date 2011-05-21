@@ -1,5 +1,5 @@
 def create_series
-  Factory.create(:series)
+  Factory(:series)
 end
 
 def view_series(series)
@@ -13,7 +13,7 @@ end
 
 Given /^the following series:$/ do |table|
   table.hashes.each do |hash|
-    Factory.create(:series,
+    Factory(:series,
       :name => hash['name'],
       :created_at => Chronic.parse(hash['created']))
   end
@@ -30,11 +30,11 @@ When /^I view the series "([^"]*)"$/ do |name|
 end
 
 Given /^a series exists$/ do
-  Factory.create(:series)
+  Factory(:series)
 end
 
 Given /^a series exists named "([^"]*)"$/ do |name|
-  Factory.create(:series, :name => name)
+  Factory(:series, :name => name)
 end
 
 When /^I view that series$/ do
@@ -76,7 +76,7 @@ Then /^I should see the series in the order:$/ do |table|
 end
 
 When /^I create a new series$/ do
-  Factory.create(:series)
+  Factory(:series)
 end
 
 Then /^the stats for that series should be:$/ do |table|

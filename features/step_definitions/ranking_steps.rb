@@ -1,11 +1,11 @@
 Given /^a series with these submissions and votes:$/ do |table|
-  series = Factory.create(:series)
+  series = Factory(:series)
   table.hashes.each do |hash|
-    submission = Factory.create(:submission, :series => series, :name => hash['name'])
+    submission = Factory(:submission, :series => series, :name => hash['name'])
     plus_votes = hash['plus votes'].to_i
     minus_votes = hash['minus votes'].to_i
-    plus_votes.times { Factory.create(:plus_vote, :submission => submission) }
-    minus_votes.times { Factory.create(:minus_vote, :submission => submission) }
+    plus_votes.times { Factory(:plus_vote, :submission => submission) }
+    minus_votes.times { Factory(:minus_vote, :submission => submission) }
   end
 end
 
