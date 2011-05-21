@@ -1,3 +1,7 @@
+def last_series
+  Series.last
+end
+
 def create_series
   Factory(:series)
 end
@@ -21,7 +25,7 @@ end
 
 Given /^I am viewing a series$/ do
   create_series
-  view_series(Series.last)
+  view_series last_series
 end
 
 When /^I view the series "([^"]*)"$/ do |name|
@@ -38,7 +42,7 @@ Given /^a series exists named "([^"]*)"$/ do |name|
 end
 
 When /^I view that series$/ do
-  visit series_path(Series.last)
+  visit series_path(last_series)
 end
 
 When /^I view the series index$/ do
@@ -82,8 +86,7 @@ end
 Then /^the stats for that series should be:$/ do |table|
   visit series_index_path
   values = table.rows_hash
-  series = Series.last
-  within("#series-#{series.id}") do
+  within("#series-#{last_series.id}") do
     should have_css(".users .value", :text => values['users'])
     should have_css(".votes .value", :text => values['votes'])
     should have_css(".submissions .value", :text => values['submissions'])

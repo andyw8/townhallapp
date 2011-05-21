@@ -1,3 +1,7 @@
+def last_submission
+  Submission.last
+end
+
 def verify_submissions_count(series, count)
   visit series_path(series)
   all('#submissions li').should have(count).items
@@ -45,12 +49,11 @@ Given /^a submission exists$/ do
 end
 
 When /^I view that submission's series$/ do
-  submission = Submission.last
-  visit series_path(submission.series)
+  visit series_path(last_submission.series)
 end
 
 Given /^the following submissions for that series:$/ do |table|
-  create_submissions_for_series(table.hashes, Series.last)
+  create_submissions_for_series(table.hashes, last_series)
 end
 
 Given /^the following submissions and series:$/ do |table|
@@ -62,7 +65,7 @@ Then /^I should see the submissions in the order:$/ do |table|
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|
-  verify_submissions_count(Series.last, count.to_i)
+  verify_submissions_count(last_series, count.to_i)
 end
 
 Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_name, email|

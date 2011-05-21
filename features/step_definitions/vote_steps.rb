@@ -1,5 +1,5 @@
 Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
-  submission = Factory(:submission, :name => submission_name, :series => Series.last)
+  submission = Factory(:submission, :name => submission_name, :series => last_series)
   plus_votes.to_i.times do
     Factory(:plus_vote, :submission => submission)
   end
@@ -9,7 +9,7 @@ Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) m
 end
 
 Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  submission = Factory(:submission, :name => submission_name, :series => Series.last)
+  submission = Factory(:submission, :name => submission_name, :series => last_series)
 end
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
@@ -37,18 +37,17 @@ Then /^I should not see a Vote button next to "([^"]*)"$/ do |submission_name|
 end
 
 Then /^I should not see a vote review for that submission$/ do
-  submission = Submission.last
+  submission = last_submission
   visit series_path(submission.series)
   page.should_not have_css("#submission-#{submission.id} .vote-review")
 end
 
 Given /^a user has voted for that submission$/ do
-  submission = Submission.last
-  Factory(:vote, :vote => 'PLUS', :submission => submission)
+  Factory(:vote, :vote => 'PLUS', :submission => last_submission)
 end
 
 Given /^I have voted (for|against) that submission$/ do |position|
-  submission = Submission.last
+  submission = last_submission
   visit series_path(submission.series)
   within("#submission-#{submission.id}") do
     click_button "Vote #{position.titleize}"
@@ -56,7 +55,7 @@ Given /^I have voted (for|against) that submission$/ do |position|
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
-  submission = Submission.last
+  submission = last_submission
   visit series_path(submission.series)
   page.should have_css("#submission-#{submission.id} .vote-review", :text => review)
 end
