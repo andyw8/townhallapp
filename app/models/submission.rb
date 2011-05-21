@@ -11,8 +11,12 @@ class Submission < ActiveRecord::Base
 
   has_many :votes
 
+  def vote_by_user(user)
+    vote_from_user(user).vote
+  end
+
   def user_has_voted?(user)
-    votes.find(:first, :conditions => {:user_id => user}).present?
+    vote_from_user(user).present?
   end
 
   def allowed_to_vote?(user, user_signed_in)
@@ -48,6 +52,12 @@ class Submission < ActiveRecord::Base
       users << vote.user
     end
     users
+  end
+
+  private
+
+  def vote_from_user(user)
+    votes.find_by_user_id(user)
   end
 
 end

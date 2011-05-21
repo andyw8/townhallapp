@@ -40,6 +40,15 @@ Given /^no are no submissions for that series$/ do
   # no code needed
 end
 
+Given /^a submission exists$/ do
+  Factory.create(:submission)
+end
+
+When /^I view that submission's series$/ do
+  submission = Submission.last
+  visit series_path(submission.series)
+end
+
 Given /^the following submissions for that series:$/ do |table|
   create_submissions_for_series(table.hashes, Series.last)
 end
