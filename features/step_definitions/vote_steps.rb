@@ -39,7 +39,7 @@ end
 Then /^I should not see a vote review for that submission$/ do
   submission = last_submission
   visit series_path(submission.series)
-  page.should_not have_css("#submission-#{submission.id} .vote-review")
+  should_not have_css("#submission-#{submission.id} .vote-review")
 end
 
 Given /^a user has voted for that submission$/ do
@@ -57,5 +57,5 @@ end
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
   submission = last_submission
   visit series_path(submission.series)
-  page.should have_css("#submission-#{submission.id} .vote-review", :text => review)
+  should have_css("#submission-#{submission.id} .vote-review", :text => review)
 end

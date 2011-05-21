@@ -35,8 +35,7 @@ def create_submissions_and_series(hashes)
 end
 
 Given /^I am creating a new submission for a series$/ do
-  series = Factory(:series)
-  visit series_path(series)
+  visit series_path(Factory(:series))
   click_link "New Submission"
 end
 
