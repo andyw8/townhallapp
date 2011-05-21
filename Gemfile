@@ -6,6 +6,7 @@ gem 'rails', '3.0.7'
 gem 'simple_form'
 
 group :development do
+  gem 'git-up'
   gem 'launchy' # used for cucumber debugging
   gem 'nifty-generators'
   gem 'ruby-fsevent'
@@ -21,7 +22,7 @@ group :development, :test do
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
   gem 'rails3-generators'
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'shoulda'
   gem 'sqlite3'
 end
