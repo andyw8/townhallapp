@@ -4,7 +4,7 @@
 
   %ul#submissions
     - for submission in @series.submissions
-      %li{:id => "submission-#{submission.id}"}
+      %li{id: "submission-#{submission.id}"}
         %span.name= submission.name
         %span.plus
           For:

@@ -8,7 +8,7 @@ def verify_submissions_count(series, count)
 end
 
 def verify_submission_author(submission, email)
-  should have_css("#submission-#{submission.id} .author-name", :text => email)
+  should have_css("#submission-#{submission.id} .author-name", text: email)
 end
 
 def verify_submissions_order(actual_submissions)
@@ -19,18 +19,18 @@ end
 def create_submissions_for_series(submission_hashes, series)
   submission_hashes.each do |hash|
     Factory(:submission,
-      :name => hash['name'],
-      :created_at => Chronic.parse(hash['created']),
-      :series => series)
+      name: hash['name'],
+      created_at: Chronic.parse(hash['created']),
+      series: series)
   end
 end
 
 def create_submissions_and_series(hashes)
   hashes.each do |hash|
-    series = Factory(:series, :name => hash['series'])
+    series = Factory(:series, name: hash['series'])
     Factory(:submission,
-      :name => hash['name'],
-      :series => series)
+      name: hash['name'],
+      series: series)
   end
 end
 

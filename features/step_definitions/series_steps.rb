@@ -18,8 +18,8 @@ end
 Given /^the following series:$/ do |table|
   table.hashes.each do |hash|
     Factory(:series,
-      :name => hash['name'],
-      :created_at => Chronic.parse(hash['created']))
+      name: hash['name'],
+      created_at: Chronic.parse(hash['created']))
   end
 end
 
@@ -38,7 +38,7 @@ Given /^a series exists$/ do
 end
 
 Given /^a series exists named "([^"]*)"$/ do |name|
-  Factory(:series, :name => name)
+  Factory(:series, name: name)
 end
 
 When /^I view that series$/ do
@@ -62,7 +62,7 @@ Given /^I leave the "([^"]*)" field blank$/ do |arg1|
 end
 
 Then /^I should see the series "([^"]*)"$/ do |name|
-  should have_css('h1', :text => name)
+  should have_css('h1', text: name)
 end
 
 Then /^(\d+) series should exist$/ do |count|
@@ -87,8 +87,8 @@ Then /^the stats for that series should be:$/ do |table|
   visit series_index_path
   values = table.rows_hash
   within("#series-#{last_series.id}") do
-    should have_css(".users .value", :text => values['users'])
-    should have_css(".votes .value", :text => values['votes'])
-    should have_css(".submissions .value", :text => values['submissions'])
+    should have_css(".users .value", text: values['users'])
+    should have_css(".votes .value", text: values['votes'])
+    should have_css(".submissions .value", text: values['submissions'])
   end
 end

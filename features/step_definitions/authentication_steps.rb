@@ -2,15 +2,15 @@ PASSWORD = 'password'
 
 def create_account(email, password=PASSWORD)
   User.create!(
-    :email => email,
-    :password => password,
-    :password_confirmation => password)
+    email: email,
+    password: password,
+    password_confirmation: password)
 end
 
 def sign_in(email, password=PASSWORD)
   visit new_user_session_path
-  fill_in 'Email', :with => email
-  fill_in 'Password', :with => password
+  fill_in 'Email', with: email
+  fill_in 'Password', with: password
   click_button 'Sign in'
   should have_content("Signed in successfully.")
 end

@@ -1,6 +1,6 @@
 class Submission < ActiveRecord::Base
 
-  default_scope :order => 'score DESC'
+  default_scope order: 'score DESC'
 
   attr_accessible :name
 

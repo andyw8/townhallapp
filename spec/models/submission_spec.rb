@@ -57,8 +57,8 @@ describe Submission do
     it "should return array of unique users who voted when there are votes" do
       user_1 = mock('User')
       user_2 = mock('User')
-      vote_1 = mock('Vote', :user => user_1)
-      vote_2 = mock('Vote', :user => user_2)
+      vote_1 = mock('Vote', user: user_1)
+      vote_2 = mock('Vote', user: user_2)
       submission.stub(:votes).and_return([vote_1, vote_2])
       submission.users.should == [user_1, user_2]
     end
@@ -113,7 +113,7 @@ describe Submission do
 
   describe "#vote_by_user" do
     it "return the vote (e.g. PLUS or MINUS) of the given user" do
-      submission.stub_chain("votes.find_by_user_id").and_return(mock('Vote', :vote => 'PLUS'))
+      submission.stub_chain("votes.find_by_user_id").and_return(mock('Vote', vote: 'PLUS'))
       submission.vote_by_user(mock('User')).should == 'PLUS'
     end
   end

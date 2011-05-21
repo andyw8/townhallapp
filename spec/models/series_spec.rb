@@ -17,8 +17,8 @@ describe Series do
     end
 
     it "should count the votes when there are multiple submissions" do
-      submission_1 = mock('', :votes_count => 2)
-      submission_2 = mock('', :votes_count => 3)
+      submission_1 = mock('', votes_count: 2)
+      submission_2 = mock('', votes_count: 3)
       series.stub(:submissions) { [submission_1, submission_2]}
       series.votes_count.should be(5)
     end
@@ -34,8 +34,8 @@ describe Series do
 
     it "should determine how many unique users have participated it's submissions" do
       u1, u2, u3 = mock(), mock(), mock()
-      submission_1 = mock('', :users => [u1, u2])
-      submission_2 = mock('', :users => [u2, u3])
+      submission_1 = mock('', users: [u1, u2])
+      submission_2 = mock('', users: [u2, u3])
       series.stub(:submissions).and_return([submission_1, submission_2])
       series.users_count.should be(3)
     end

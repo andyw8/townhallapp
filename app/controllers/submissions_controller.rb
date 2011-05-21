@@ -11,9 +11,9 @@ class SubmissionsController < ApplicationController
     @submission = @series.submissions.new(params[:submission])
     @submission.user = current_user
     if @submission.save
-      redirect_to series_url(@series), :notice => "Successfully created submission."
+      redirect_to series_url(@series), notice: "Successfully created submission."
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 

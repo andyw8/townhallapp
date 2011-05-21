@@ -1,22 +1,22 @@
 Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
-  submission = Factory(:submission, :name => submission_name, :series => last_series)
+  submission = Factory(:submission, name: submission_name, series: last_series)
   plus_votes.to_i.times do
-    Factory(:plus_vote, :submission => submission)
+    Factory(:plus_vote, submission: submission)
   end
   minus_votes.to_i.times do
-    Factory(:minus_vote, :submission => submission)
+    Factory(:minus_vote, submission: submission)
   end
 end
 
 Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  submission = Factory(:submission, :name => submission_name, :series => last_series)
+  submission = Factory(:submission, name: submission_name, series: last_series)
 end
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
   within("#submission-#{submission.id}") do
-    should have_css('.plus .value', :text => plus_votes)
-    should have_css('.minus .value', :text => minus_votes)
+    should have_css('.plus .value', text: plus_votes)
+    should have_css('.minus .value', text: minus_votes)
   end
 end
 
@@ -43,7 +43,7 @@ Then /^I should not see a vote review for that submission$/ do
 end
 
 Given /^a user has voted for that submission$/ do
-  Factory(:vote, :vote => 'PLUS', :submission => last_submission)
+  Factory(:vote, vote: 'PLUS', submission: last_submission)
 end
 
 Given /^I have voted (for|against) that submission$/ do |position|
@@ -57,5 +57,5 @@ end
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
   submission = last_submission
   visit series_path(submission.series)
-  should have_css("#submission-#{submission.id} .vote-review", :text => review)
+  should have_css("#submission-#{submission.id} .vote-review", text: review)
 end
