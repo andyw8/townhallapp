@@ -54,6 +54,7 @@ class Submission < ActiveRecord::Base
     users
   end
 
+  # should this method really be in Vote ?
   def new_vote(vote)
     votes.new(vote: vote)
   end

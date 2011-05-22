@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :series
 
+  # should this method really be in Series ?
   def new_series(attributes)
     series.new(attributes)
   end

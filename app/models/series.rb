@@ -30,6 +30,7 @@ class Series < ActiveRecord::Base
     submissions.count
   end
 
+  # should this method really be in Submission ?
   def new_submission(attributes={}, current_user=nil)
     submission = submissions.new(attributes)
     submission.user = current_user

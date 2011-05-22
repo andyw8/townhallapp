@@ -55,4 +55,29 @@ describe Series do
     end
   end
 
+  describe "#new_submission" do
+
+    it "assigns the new submission to the given user if supplied" do
+      user = mock_model('User')
+      submission = series.new_submission(nil, user)
+      submission.user.should be(user)
+    end
+
+    it "assigns the new submission to no user if not supplied" do
+      submission = series.new_submission
+      submission.user.should be_nil
+    end
+
+    it "instantiates a new submission with the provided attributes" do
+      submission = series.new_submission({'name' => 'foo'})
+      submission.name.should == 'foo'
+    end
+
+    it "instantiates a new submission with the provided attributes" do
+      submission = series.new_submission
+      submission.name.should be_nil
+    end
+
+  end
+
 end
