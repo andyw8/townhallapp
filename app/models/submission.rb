@@ -54,6 +54,10 @@ class Submission < ActiveRecord::Base
     users
   end
 
+  def new_vote(vote)
+    votes.new(vote: vote)
+  end
+
   private
 
   def vote_from_user(user)

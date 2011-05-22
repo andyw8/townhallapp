@@ -7,7 +7,7 @@ class SeriesController < ApplicationController
   end
 
   def create
-    @series = current_user.series.new(params[:series])
+    @series = current_user.new_series(params[:series])
     if @series.save
       redirect_to series_index_path, notice: "Successfully created series."
     else

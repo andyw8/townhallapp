@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   before_filter :find_submission
 
   def create
-    vote = @submission.votes.new(vote: params[:vote])
+    vote = @submission.new_vote(params[:vote])
     vote.user = current_user
     vote.save!
     redirect_to series_url(@submission.series), notice: "Your vote was recorded"

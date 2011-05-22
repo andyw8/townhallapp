@@ -30,4 +30,10 @@ class Series < ActiveRecord::Base
     submissions.count
   end
 
+  def new_submission(attributes={}, current_user=nil)
+    submission = submissions.new(attributes)
+    submission.user = current_user
+    submission
+  end
+
 end

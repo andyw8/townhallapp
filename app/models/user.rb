@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :series
+
+  def new_series(attributes)
+    series.new(attributes)
+  end
 end
