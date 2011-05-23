@@ -1,4 +1,4 @@
-Feature: View Series
+Feature: Browse Submissions
 
   In order to see what other people have submitted
   a citizen
