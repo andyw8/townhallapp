@@ -1,8 +1,9 @@
 class Series < ActiveRecord::Base
 
-  default_scope order: 'created_at DESC'
-
   attr_accessible :name
+  attr_writer :random_element_picker
+
+  default_scope order: 'created_at DESC'
 
   validates_presence_of :name, :user
 
@@ -19,10 +20,7 @@ class Series < ActiveRecord::Base
 
   def users_count
     users = []
-    submissions.each do |s|
-      # seems that += isn't permitted on an array
-      users = users + s.users
-    end
+    submissions.each { |s| users += s.users }
     users.uniq.size
   end
 
@@ -35,6 +33,16 @@ class Series < ActiveRecord::Base
     submission = submissions.new(attributes)
     submission.user = current_user
     submission
+  end
+
+  def featured_submission(user)
+    avail = submissions_not_yet_voted_on(user)
+    avail.any? ? @random_element_picker.random_element(avail) : nil
+  end
+
+  def submissions_not_yet_voted_on(user)
+    # this should probably be done as a database query
+    submissions.reject { |s| s.user_has_voted?(user) }
   end
 
 end

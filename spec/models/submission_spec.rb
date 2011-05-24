@@ -21,7 +21,7 @@ describe Submission do
       submission.score.should == 0
     end
 
-    it "should set the score to 1 when there are two PLUS votes and 1 MINUS vote" do
+    it "should set the score by subtracting the MINUS votes from the PLUS votes" do
       submission.stub_chain("votes.plus.count").and_return(2)
       submission.stub_chain("votes.minus.count").and_return(1)
       submission.should_receive(:save!)
@@ -29,7 +29,7 @@ describe Submission do
       submission.score.should == 1
     end
 
-    it "should set the score to -1 when there is one PLUS vote and 2 MINUS votes" do
+    it "should set a negative score when there are more MINUS votes than PLUS votes" do
       submission.stub_chain("votes.plus.count").and_return(1)
       submission.stub_chain("votes.minus.count").and_return(2)
       submission.should_receive(:save!)
@@ -37,7 +37,7 @@ describe Submission do
       submission.score.should == -1
     end
 
-    it "should set the score to 0 when there are 2 PLUS votes and 2 MINUS votes" do
+    it "should set the score to 0 when there are equal plus and minus votes" do
       submission.stub_chain("votes.plus.count").and_return(2)
       submission.stub_chain("votes.minus.count").and_return(2)
       submission.should_receive(:save!)

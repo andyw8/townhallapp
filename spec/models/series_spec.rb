@@ -17,8 +17,8 @@ describe Series do
     end
 
     it "should count the votes when there are multiple submissions" do
-      submission_1 = mock('', votes_count: 2)
-      submission_2 = mock('', votes_count: 3)
+      submission_1 = mock('s1', votes_count: 2)
+      submission_2 = mock('s2', votes_count: 3)
       series.stub(:submissions) { [submission_1, submission_2]}
       series.votes_count.should == 5
     end
@@ -83,49 +83,28 @@ describe Series do
   describe "#featured_submission" do
 
     it "should return nil if there are no submissions" do
-      # need something here
-      series.featured_submission.should be_nil
+      series.stub_chain(:submissions).and_return([])
+      series.featured_submission(stub('user')).should be_nil
     end
 
-    it "should return the only submission if there is only one" do
-      submission_1 = mock('submission')
+    it "should return the submission if there is only one" do
+      submission_1 = mock('submission', :user_has_voted? => false)
       series.stub(:submissions).and_return([submission_1])
-      series.featured_submission.should be(submission_1)
+      series.random_element_picker = mock('', :random_element => submission_1)
+      series.featured_submission(stub('user')).should be(submission_1)
     end
 
-    it "should return a random submission" do
-      submission_0, submission_1, submission_2 = mock('s1'), mock('s2'), mock('s3')
-      series.stub(:submissions).and_return([submission_0, submission_1, submission_2])
-      series.random_generator = mock('random_generator', :get_value => 2)
-      series.featured_submission.should be(submission_2)
+    it "should return a random submission from those not yet voted on by the user" do
+      s0 = mock('s0', :user_has_voted? => false)
+      s1 = mock('s1', :user_has_voted? => true)
+      s2 = mock('s2', :user_has_voted? => false)
+      series.stub(:submissions).and_return([s0, s1, s2])
+      random_element_picker = mock('random_element_picker')
+      random_element_picker.should_receive(:random_element).with([s0, s2]).and_return(s0)
+      series.random_element_picker = random_element_picker
+      series.featured_submission(stub('user'))
     end
 
-  end
-
-  describe "#submissions_not_yet_voted_on" do
-    it "should return an empty array if there are no submissions" do
-      series.stub(:submissions).and_return([])
-      user = mock('user')
-      series.submissions_not_yet_voted_on(user).should be_empty
-    end
-
-    it "should return all submissions if none have been voted on" do
-      s0, s1, s2 = stub('s0'), stub('s1'), stub('s2')
-      submissions = [s0, s1, s2]
-      series.stub(:submissions).and_return(submissions)
-      user = mock('user')
-      series.submissions_not_yet_voted_on(user).should == submissions
-    end
-
-    # it "should return all submissions excluding those the user has voted on" do
-    #   submission_0, submission_1, submission_2 = stub('s1'), stub('s2'), stub('s3')
-    #   user = mock('user')
-    #   submission_0.expect(:user_has_voted?).with(user).and_return(false)
-    #   submission_1.expect(:user_has_voted?).with(user).and_return(true)
-    #   submission_2.expect(:user_has_voted?).with(user).and_return(false)
-    #   series.stub(:submissions).and_return([submission_0, submission_1, submission_2])
-    #   series.submissions_not_yet_voted_on(user).should == [submission_0, submission_2]
-    # end
   end
 
 end
