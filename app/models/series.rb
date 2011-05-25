@@ -36,8 +36,12 @@ class Series < ActiveRecord::Base
   end
 
   def featured_submission(user)
-    avail = submissions_not_yet_voted_on(user)
-    avail.any? ? @random_element_picker.random_element(avail) : nil
+    submissions_eligible_to_vote_on = submissions_not_yet_voted_on(user)
+    if submissions_eligible_to_vote_on.any?
+      random_element_picker.random_element(submissions_eligible_to_vote_on)
+    else
+      nil
+    end
   end
 
   def submissions_not_yet_voted_on(user)
