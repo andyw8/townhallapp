@@ -78,7 +78,7 @@ GEM
       railties (>= 3.0.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
-    gherkin (2.3.7)
+    gherkin (2.3.9)
       json (>= 1.4.6)
     git-up (0.5.0)
       colored (>= 1.2)
