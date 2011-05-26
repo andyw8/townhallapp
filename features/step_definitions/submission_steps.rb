@@ -71,3 +71,11 @@ Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_n
   submission = Submission.find_by_name(submission_name)
   verify_submission_author(submission, email)
 end
+
+Given /^a submission exists for that series$/ do
+  Factory(:submission, :series => last_series)
+end
+
+Given /^that series has a submission "([^"]*)"$/ do |name|
+  Factory(:submission, :name => name, :series => last_series)
+end

@@ -1,5 +1,12 @@
 - title @series.name
 
+- if @series.featured_submission(current_user)
+  %h2 Featured
+  #featured-submission= @series.featured_submission(current_user).name
+- elsif @series.featured_submission(current_user).nil? && @series.submissions.any?
+  .all-voted-on
+    You have voted on all the submissions in this series
+
 - if @series.submissions.any?
 
   %ul#submissions

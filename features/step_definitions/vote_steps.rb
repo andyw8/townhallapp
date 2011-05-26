@@ -46,7 +46,8 @@ Given /^a user has voted for that submission$/ do
   Factory(:vote, vote: 'PLUS', submission: last_submission)
 end
 
-Given /^I have voted (for|against) that submission$/ do |position|
+Given /^I have voted (on|for|against) that submission$/ do |position|
+  position = "for" if position == "on"
   submission = last_submission
   visit series_path(submission.series)
   within("#submission-#{submission.id}") do

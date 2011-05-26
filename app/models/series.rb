@@ -49,4 +49,8 @@ class Series < ActiveRecord::Base
     submissions.reject { |s| s.user_has_voted?(user) }
   end
 
+  def random_element_picker
+    @random_element_picker ||= RandomElementPicker.new
+  end
+
 end
