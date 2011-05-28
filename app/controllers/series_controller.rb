@@ -21,5 +21,6 @@ class SeriesController < ApplicationController
 
   def show
     @series = Series.find(params[:id])
+    @featured_series = @series.featured_submission(current_user)
   end
 end

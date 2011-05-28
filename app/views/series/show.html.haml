@@ -1,40 +1,15 @@
 - title @series.name
 
-- if @series.featured_submission(current_user)
-  %h2 Featured
-  #featured-submission= @series.featured_submission(current_user).name
-- elsif @series.featured_submission(current_user).nil? && @series.submissions.any?
-  .all-voted-on
-    You have voted on all the submissions in this series
+= render 'featured'
 
-- if @series.submissions.any?
+%h2 All Submissions
 
-  %ul#submissions
-    - for submission in @series.submissions
-      %li{id: "submission-#{submission.id}"}
-        %span.name= submission.name
-        %span.plus
-          For:
-          %span.value= submission.plus_votes
-        %span.minus
-          Against:
-          %span.value= submission.minus_votes
-        %span.author
-          Author:
-          %span.author-name= submission.author
-        // it would be better if we could just pass the current_user
-        // as a parameter to the allowed_to_vote? method, but calling
-        // user_signed_in? on that model doesn't work
-        =vote_buttons(submission) if submission.allowed_to_vote?(current_user, user_signed_in?)
-        - if submission.user_has_voted?(current_user)
-          %span.vote-review
-            =vote_review(submission)
-
-- else
+- if @series.submissions.empty?
   There are no submissions
+- else
+  %ul#submissions= render @series.submissions
 
 - if user_signed_in?
   %p= link_to "New Submission", new_series_submission_path(@series)
 
-%p
-  = link_to "View All Series", series_index_path
+%p= link_to "View All Series", series_index_path

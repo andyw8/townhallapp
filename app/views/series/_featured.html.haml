@@ -1,0 +1,8 @@
+- if @featured_series
+  %h2 Featured Submission
+  %ul
+    %li#featured-submission
+      = @featured_series.name
+- elsif @featured_series.nil? && @series.submissions.any?
+  .all-voted-on
+    You have voted on all the submissions in this series

@@ -1,0 +1,20 @@
+%li{id: "submission-#{submission.id}"}
+  %span.name= submission.name
+  %span.plus
+    For:
+    %span.value= submission.plus_votes
+  %span.minus
+    Against:
+    %span.value= submission.minus_votes
+  %span.author
+    Posted by:
+    %span.author-name= submission.author
+  = time_ago_in_words submission.created_at
+  ago
+  // it would be better if we could just pass the current_user
+  // as a parameter to the allowed_to_vote? method, but calling
+  // user_signed_in? on that model doesn't work
+  =vote_buttons(submission) if submission.allowed_to_vote?(current_user, user_signed_in?)
+  - if submission.user_has_voted?(current_user)
+    %span.vote-review
+      =vote_review(submission)
