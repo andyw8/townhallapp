@@ -47,11 +47,7 @@ class Submission < ActiveRecord::Base
   end
 
   def users
-    users = []
-    votes.each do |vote|
-      users << vote.user
-    end
-    users
+    votes.inject([]) { |users, vote| users << vote.user }
   end
 
   # should this method really be in Vote ?

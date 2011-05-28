@@ -11,16 +11,11 @@ class Series < ActiveRecord::Base
   has_many :submissions
 
   def votes_count
-    total = 0
-    submissions.each do |s|
-      total += s.votes_count
-    end
-    total
+    submissions.inject(0) { |total, submission| total += submission.votes_count }
   end
 
   def users_count
-    users = []
-    submissions.each { |s| users += s.users }
+    users = submissions.inject([]) { |users, submission| users += submission.users }
     users.uniq.size
   end
 
