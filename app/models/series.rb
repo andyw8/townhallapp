@@ -10,9 +10,10 @@ class Series < ActiveRecord::Base
   belongs_to :user
   has_many :submissions
   has_many :users, :through => :submissions, :uniq => true
+  has_many :votes, :through => :submissions
 
   def votes_count
-    submissions.inject(0) { |total, submission| total += submission.votes_count }
+    votes.count
   end
 
   def users_count

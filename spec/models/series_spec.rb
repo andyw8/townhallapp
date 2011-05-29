@@ -11,16 +11,9 @@ describe Series do
 
   describe "#votes_count" do
 
-    it "should be 0 when there are no submissions" do
-      series.stub_chain(:submissions).and_return([])
-      series.votes_count.should == 0
-    end
-
-    it "should count the votes when there are multiple submissions" do
-      submission_1 = mock('s1', votes_count: 2)
-      submission_2 = mock('s2', votes_count: 3)
-      series.stub(:submissions) { [submission_1, submission_2]}
-      series.votes_count.should == 5
+    it "should return the number of votes" do
+      series.stub_chain(:votes, :count).and_return(3)
+      series.votes_count.should == 3
     end
 
   end
