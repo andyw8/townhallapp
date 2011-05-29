@@ -4,7 +4,7 @@ Given /^the next random submission will be "([^"]*)"$/ do |name|
 end
 
 Then /^the featured submission should be "([^"]*)"$/ do |name|
-  should_not have_css('#featured-submission .name', :text => name)
+  should_not have_css('.featured-submission .name', :text => name)
 end
 
 Then /^I should see a message that I have voted on all the submissions$/ do
@@ -16,9 +16,9 @@ Then /^I should not see a message that I have voted on all the submissions$/ do
 end
 
 Then /^I should not see a featured submission$/ do
-  should_not have_css('#featured-submission')
+  should_not have_css('.featured-submission')
 end
 
 Then /^I should see a featured submission$/ do
-  should have_css('#featured-submission')
+  should have_css('.featured-submission')
 end

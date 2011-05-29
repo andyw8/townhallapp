@@ -1,8 +1,8 @@
-- if @featured_series
+- if @featured_submission
+
   %h2 Featured Submission
-  %ul
-    %li#featured-submission
-      = @featured_series.name
-- elsif @featured_series.nil? && @series.submissions.any?
+  %ul#featured-submission
+    = render 'submissions/submission', {:submission => @featured_submission}
+- elsif @featured_submission.nil? && @series.submissions.any?
   .all-voted-on
     You have voted on all the submissions in this series
