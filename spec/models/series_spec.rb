@@ -27,16 +27,8 @@ describe Series do
 
   describe "#users_count" do
 
-    it "should be 0 when there are no submissions" do
-      series.stub(:submissions).and_return([])
-      series.users_count.should == 0
-    end
-
-    it "should determine how many unique users have participated it's submissions" do
-      u1, u2, u3 = mock(), mock(), mock()
-      submission_1 = mock('', users: [u1, u2])
-      submission_2 = mock('', users: [u2, u3])
-      series.stub(:submissions).and_return([submission_1, submission_2])
+    it "should return the number of associated users" do
+      series.stub_chain(:users, :count).and_return(3)
       series.users_count.should == 3
     end
 
