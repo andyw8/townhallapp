@@ -47,8 +47,8 @@ class Submission < ActiveRecord::Base
     votes.count
   end
 
-  # should this method really be in Vote ?
   def new_vote(vote)
+    # should this method really be in Vote ?
     votes.new(vote: vote)
   end
 
