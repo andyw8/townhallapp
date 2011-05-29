@@ -47,24 +47,6 @@ describe Submission do
 
   end
 
-  describe "#users" do
-
-    it "should return an empty array when there are no votes" do
-      submission.stub(:votes).and_return([])
-      submission.users.should be_empty
-    end
-
-    it "should return array of unique users who voted when there are votes" do
-      user_1 = mock('User')
-      user_2 = mock('User')
-      vote_1 = mock('Vote', user: user_1)
-      vote_2 = mock('Vote', user: user_2)
-      submission.stub(:votes).and_return([vote_1, vote_2])
-      submission.users.should == [user_1, user_2]
-    end
-
-  end
-
   describe "#user_has_voted?" do
 
     it "should return true when there is a vote from that user" do
