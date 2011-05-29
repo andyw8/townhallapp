@@ -25,4 +25,4 @@ BDD Strategy
 * 100% coverage on models (using CoverMe for reporting)
 * No specs for views, controllers, helpers or routing - Cucumber is sufficient
 * Model specs do not hit the real database (by using NullDB)
-* Continuous integration provided by [Travis CI](http://travis-ci.org/andyw8/townhallapp.png)
+* Continuous integration provided by [Travis CI](http://travis-ci.org/andyw8/townhallapp)
