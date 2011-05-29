@@ -92,3 +92,8 @@ Then /^the stats for that series should be:$/ do |table|
     should have_css(".submissions .value", text: values['submissions'])
   end
 end
+
+Then /^that series should have (\d+) votes$/ do |count|
+  # should verify through UI, not DB
+  last_series.votes_count.should == count.to_i
+end

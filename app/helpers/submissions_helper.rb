@@ -1,17 +1,26 @@
 module SubmissionsHelper
 
   def vote_buttons(submission)
-    (button_to 'Vote For', {controller: :votes, action: :create, series_id: submission.series, submission_id: submission, vote: 'PLUS'}) + (button_to 'Vote Against', {controller: :votes, action: :create, series_id: submission.series, submission_id: submission, vote: 'MINUS'})
+    buttons = {'Vote For' => 'PLUS', 'Vote Against' => 'MINUS', 'Skip' => 'NONE'}
+    result = []
+    buttons.each_pair do |title, value|
+      result << (button_to title,
+        {controller: :votes, action: :create, series_id: submission.series,
+          submission_id: submission, vote: value})
+    end
+    result.join
   end
 
   def vote_review(submission)
-    if submission.vote_by_user(current_user) == 'PLUS'
+    case submission.vote_by_user(current_user)
+    when 'PLUS'
       "You voted for this"
-    elsif submission.vote_by_user(current_user) == 'MINUS'
+    when 'MINUS'
       "You voted against this"
-    else
-      raise "Invalid vote value"
+    when 'NONE'
+      "You skipped this"
     end
+
   end
 
 end

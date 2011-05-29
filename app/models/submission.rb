@@ -9,7 +9,8 @@ class Submission < ActiveRecord::Base
   belongs_to :series
   belongs_to :user
 
-  has_many :votes
+  has_many :votes, :conditions => "vote IN ('PLUS', 'MINUS')"
+  has_many :all_votes, :class_name => 'Vote'
   has_many :users, :through => :votes, :uniq => true
 
   def vote_by_user(user)
@@ -55,7 +56,7 @@ class Submission < ActiveRecord::Base
   private
 
   def vote_from_user(user)
-    votes.find_by_user_id(user)
+    all_votes.find_by_user_id(user)
   end
 
 end

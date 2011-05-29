@@ -17,6 +17,7 @@ describe Vote do
   it { should allow_value('PLUS').for(:vote) }
   it { should_not allow_value('plus').for(:vote) }
   it { should allow_value('MINUS').for(:vote) }
+  it { should allow_value('NONE').for(:vote) }
   it { should_not allow_value('foo').for(:vote) }
 
 end

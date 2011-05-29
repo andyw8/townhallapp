@@ -79,3 +79,8 @@ end
 Given /^that series has a submission "([^"]*)"$/ do |name|
   Factory(:submission, :name => name, :series => last_series)
 end
+
+Then /^that submission should have (\d+) votes$/ do |count|
+  # should verify through UI, not DB
+  last_submission.votes_count.should == count.to_i
+end
