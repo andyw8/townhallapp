@@ -16,7 +16,6 @@ group :development, :test do
   gem 'activerecord-nulldb-adapter'
   gem 'capybara'
   gem 'chronic' # for easy date/time parsing
-  gem 'cover_me', '>= 1.0.0.rc6' # rcov replacement for ruby 1.9
   gem 'cucumber-rails'
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
