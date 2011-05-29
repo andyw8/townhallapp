@@ -39,6 +39,8 @@ class Series < ActiveRecord::Base
     end
   end
 
+  private
+
   def submissions_not_yet_voted_on(user)
     # this should probably be done as a database query
     submissions.reject { |s| s.user_has_voted?(user) }
