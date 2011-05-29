@@ -10,6 +10,7 @@ class Submission < ActiveRecord::Base
   belongs_to :user
 
   has_many :votes
+  has_many :users, :through => :votes, :uniq => true
 
   def vote_by_user(user)
     vote_from_user(user).vote
@@ -44,10 +45,6 @@ class Submission < ActiveRecord::Base
 
   def votes_count
     votes.count
-  end
-
-  def users
-    votes.inject([]) { |users, vote| users << vote.user }
   end
 
   # should this method really be in Vote ?
