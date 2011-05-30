@@ -4,6 +4,7 @@ gem 'haml'
 gem 'devise'
 gem 'rails', '3.0.7'
 gem 'simple_form'
+gem 'disqus'
 
 group :development do
   gem 'git-up'
