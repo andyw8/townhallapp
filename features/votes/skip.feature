@@ -1,9 +1,15 @@
-Feature: Skip
+Feature: Skip Submission
+
+  In order to avoid seeing a suggestion featured again which I don't care about
+  As a user
+  I want to mark that submission as skipped
+
+  Skipped submissions do not count towards the votes count for a series or submission.
 
   Background:
     Given I am authenticated
 
-  Scenario: Voting against a submission with no votes
+  Scenario: Skipping a submission
     Given a series exists
     And that series has a submission "My Submission" with no votes
     When I view that series
