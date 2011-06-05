@@ -50,12 +50,12 @@ describe Submission do
   describe "#user_has_voted?" do
 
     it "should return true when there is a vote from that user" do
-      submission.stub_chain(:all_votes, :find_by_user_id)).and_return(mock('Vote'))
+      submission.stub_chain(:all_votes, :find_by_user_id).and_return(mock('Vote'))
       submission.user_has_voted?(mock('User')).should be_true
     end
 
     it "should return false when there are no votes from that user" do
-      submission.stub_chain(:all_votes, :find_by_user_id)).and_return(nil)
+      submission.stub_chain(:all_votes, :find_by_user_id).and_return(nil)
       submission.user_has_voted?(mock('User')).should be_false
     end
 
@@ -73,7 +73,7 @@ describe Submission do
     end
 
     it "should return false when that user has already voted" do
-      submission.stub_chain(:all_votes, :find_by_user_id)).and_return(mock('Vote'))
+      submission.stub_chain(:all_votes, :find_by_user_id).and_return(mock('Vote'))
       submission.allowed_to_vote?(mock('User'), true).should be_false
     end
 
@@ -88,7 +88,7 @@ describe Submission do
 
   describe "#vote_by_user" do
     it "returns the vote (e.g. PLUS or MINUS) of the given user" do
-      submission.stub_chain(:all_votes, :find_by_user_id)).and_return(mock('Vote', vote: 'PLUS'))
+      submission.stub_chain(:all_votes, :find_by_user_id).and_return(mock('Vote', vote: 'PLUS'))
       submission.vote_by_user(mock('User')).should == 'PLUS'
     end
   end
