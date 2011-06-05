@@ -93,11 +93,4 @@ describe Submission do
     end
   end
 
-  describe "#comments_count" do
-    it "returns the number of comments on the submission" do
-      submission.stub_chain(:comments, :count).and_return(3)
-      submission.comments_count.should == 3
-    end
-  end
-
 end
