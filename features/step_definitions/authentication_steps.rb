@@ -9,10 +9,7 @@ end
 
 def sign_in(email, password=PASSWORD)
   login_page.visit
-  fill_in 'Email', with: email
-  fill_in 'Password', with: password
-  click_button 'Sign in'
-  should have_content("Signed in successfully.")
+  login_page.sign_in(email, password)
 end
 
 def create_account_and_sign_in(email)

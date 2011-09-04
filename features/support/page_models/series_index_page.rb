@@ -5,8 +5,8 @@ module PageModel
       session.visit series_index_path
     end
 
-    def verify_series_count(count)
-      session.all('#series li').size.should == count
+    def series_count
+      session.all('#series li').size
     end
   
   end
