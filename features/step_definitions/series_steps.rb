@@ -1,7 +1,3 @@
-def series_index_page
-  PageModel::SeriesIndexPage.new
-end
-
 def last_series
   Series.last
 end
@@ -49,7 +45,7 @@ Given /^no series exist$/ do
 end
 
 Given /^I am creating a new series$/ do
-  visit new_series_path
+  new_series_page.visit
 end
 
 Given /^I leave the "([^"]*)" field blank$/ do |arg1|

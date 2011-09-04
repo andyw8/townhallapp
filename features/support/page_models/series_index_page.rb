@@ -12,4 +12,8 @@ module PageModel
   end
 end
 
+def series_index_page
+  PageModel::SeriesIndexPage.new
+end
+
 World(PageModel)

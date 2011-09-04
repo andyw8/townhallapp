@@ -54,3 +54,7 @@ module PageModel
   
   end
 end
+
+def series_page
+  PageModel::SeriesPage.new
+end

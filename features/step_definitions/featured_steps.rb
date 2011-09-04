@@ -1,7 +1,3 @@
-def series_page
-  PageModel::SeriesPage.new
-end
-
 Given /^the next random submission will be "([^"]*)"$/ do |name|
   submission = Submission.find_by_name(name)
   RandomElementPicker.stub(:random_element => submission)
