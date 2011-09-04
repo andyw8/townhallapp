@@ -1,7 +1,7 @@
 Then /^the page title should be "([^"]*)"$/ do |title|
-  should have_css('h1', text: title)
+  series_page.page_title.should == title  
 end
 
 Then /^the window title should be "([^"]*)"$/ do |title|
-  should have_css('title', text: title)
+  series_page.window_title.should == title
 end

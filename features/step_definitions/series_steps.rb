@@ -1,3 +1,7 @@
+def series_index_page
+  PageModel::SeriesIndexPage.new
+end
+
 def last_series
   Series.last
 end
@@ -8,11 +12,6 @@ end
 
 def view_series(series)
   visit series_path(series)
-end
-
-def verify_series_count(count)
-  visit series_index_path
-  all('#series li').should have(count).items
 end
 
 Given /^the following series:$/ do |table|
@@ -66,7 +65,8 @@ Then /^I should see the series "([^"]*)"$/ do |name|
 end
 
 Then /^(\d+) series should exist$/ do |count|
-  verify_series_count(count.to_i)
+  visit series_index_path
+  series_index_page.verify_series_count(count.to_i)
 end
 
 Then /^the series owner of "([^"]*)" should be shown as "([^"]*)"$/ do |series_name, email|

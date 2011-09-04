@@ -1,5 +1,5 @@
 def series_page
-  PageModel::SeriesPage.new(page)
+  PageModel::SeriesPage.new
 end
 
 Given /^the next random submission will be "([^"]*)"$/ do |name|
