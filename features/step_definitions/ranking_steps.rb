@@ -10,6 +10,6 @@ Given /^a series with these submissions and votes:$/ do |table|
 end
 
 Then /^the submissions should be in the order:$/ do |table|
-  visit series_path(last_series)
+  series_page.visit(last_series)
   verify_submissions_order(table.raw.flatten)
 end

@@ -10,10 +10,6 @@ def create_series
   Factory(:series)
 end
 
-def view_series(series)
-  visit series_path(series)
-end
-
 Given /^the following series:$/ do |table|
   table.hashes.each do |hash|
     Factory(:series,
@@ -24,12 +20,12 @@ end
 
 Given /^I am viewing a series$/ do
   create_series
-  view_series last_series
+  series_page.visit last_series
 end
 
 When /^I view the series "([^"]*)"$/ do |name|
   series = Series.find_by_name(name)
-  view_series(series)
+  series_page.visit series
 end
 
 Given /^a series exists$/ do
@@ -41,11 +37,11 @@ Given /^a series exists named "([^"]*)"$/ do |name|
 end
 
 When /^I view that series$/ do
-  visit series_path(last_series)
+  series_page.visit(last_series)
 end
 
 When /^I view the series index$/ do
-  visit series_index_path
+  series_index_page.visit
 end
 
 Given /^no series exist$/ do
@@ -65,7 +61,7 @@ Then /^I should see the series "([^"]*)"$/ do |name|
 end
 
 Then /^(\d+) series should exist$/ do |count|
-  visit series_index_path
+  series_index_page.visit
   series_index_page.verify_series_count(count.to_i)
 end
 
@@ -84,7 +80,7 @@ When /^I create a new series$/ do
 end
 
 Then /^the stats for that series should be:$/ do |table|
-  visit series_index_path
+  series_index_page.visit
   values = table.rows_hash
   within("#series-#{last_series.id}") do
     should have_css(".users .value", text: values['users'])

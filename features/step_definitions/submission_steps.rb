@@ -3,7 +3,7 @@ def last_submission
 end
 
 def verify_submissions_count(series, count)
-  visit series_path(series)
+  series_page.visit(series)
   all('#submissions li').should have(count).items
 end
 
@@ -35,7 +35,7 @@ def create_submissions_and_series(hashes)
 end
 
 Given /^I am creating a new submission for a series$/ do
-  visit series_path(Factory(:series))
+  series_page.visit Factory(:series)
   click_link "New Submission"
 end
 
@@ -48,7 +48,7 @@ Given /^a submission exists$/ do
 end
 
 When /^I view that submission's series$/ do
-  visit series_path(last_submission.series)
+  series_page.visit last_submission.series
 end
 
 Given /^the following submissions for that series:$/ do |table|
