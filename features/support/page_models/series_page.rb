@@ -1,9 +1,5 @@
 module PageModel
   class SeriesPage < PageModel::Base
-    
-    def visit(series)
-      session.visit series_path(series)
-    end
 
     def has_featured_submission?
       session.has_css?('#featured-submission')
@@ -58,3 +54,5 @@ end
 def series_page
   PageModel::SeriesPage.new
 end
+
+World(PageModel)

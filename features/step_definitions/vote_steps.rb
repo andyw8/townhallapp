@@ -33,7 +33,7 @@ end
 
 Then /^I should not see a vote review for that submission$/ do
   submission = last_submission
-  series_page.visit submission.series
+  visit series_path(submission.series)
   series_page.has_vote_review?(submission).should == false
 end
 
@@ -44,7 +44,7 @@ end
 Given /^I have voted (on|for|against) that submission$/ do |position|
   position = "for" if position == "on"
   submission = last_submission
-  series_page.visit submission.series
+  visit series_path(submission.series)
   within("#submission-#{submission.id}") do
     click_button "Vote #{position.titleize}"
   end
@@ -52,6 +52,6 @@ end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
   submission = last_submission
-  series_page.visit submission.series
+  visit series_path(submission.series)
   series_page.vote_review_text(submission).should == review
 end

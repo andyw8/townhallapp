@@ -6,15 +6,14 @@ module PageModel
     end
   
     def page_title
-      @session.find('h1').text
+      session.find('h1').text
     end
 
     def window_title
-      @session.find('title').text
+      session.find('title').text
     end
   
   end
 end
 
 World(PageModel)
-
