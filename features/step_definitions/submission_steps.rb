@@ -4,15 +4,15 @@ end
 
 def verify_submissions_count(series, count)
   series_page.visit(series)
-  all('#submissions li').should have(count).items
+  series_page.submissions_count.should == count.to_i
 end
 
 def verify_submission_author(submission, email)
-  should have_css("#submission-#{submission.id} .author-name", text: email)
+  series_page.submission_author_email(submission).should == email
 end
 
 def verify_submissions_order(actual_submissions)
-  expected_submissions = all('#submissions .name').collect(&:text)
+  expected_submissions = series_page.submission_names
   expected_submissions.should == actual_submissions
 end
 
@@ -36,7 +36,7 @@ end
 
 Given /^I am creating a new submission for a series$/ do
   series_page.visit Factory(:series)
-  click_link "New Submission"
+  series_page.follow_new_submission
 end
 
 Given /^no are no submissions for that series$/ do

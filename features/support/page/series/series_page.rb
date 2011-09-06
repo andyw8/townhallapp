@@ -53,6 +53,22 @@ module Page
         session.has_css?("#{submission_sel(submission)} input[value='Vote']")
       end
       
+      def submissions_count
+        session.all('#submissions li').size
+      end
+      
+      def submission_author_email(submission)
+        session.find("#{submission_sel(submission)} .author-name").text
+      end
+      
+      def submission_names
+        session.all('#submissions .name').collect(&:text)
+      end
+      
+      def follow_new_submission
+        session.click_link "New Submission"
+      end
+      
       private
             
       def submission_sel(submission)
