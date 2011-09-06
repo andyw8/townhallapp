@@ -2,7 +2,7 @@ source :rubygems
 
 gem 'haml'
 gem 'devise'
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0'
 gem 'simple_form'
 
 group :development do
