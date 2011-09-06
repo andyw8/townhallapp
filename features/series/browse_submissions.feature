@@ -4,7 +4,6 @@ Feature: Browse Submissions
   a citizen
   wants to browse the submission for a particular series
 
-  @funny
   Scenario: Page and window title
     Given a series exists named "My Series"
     When I view that series

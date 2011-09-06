@@ -1,7 +1,9 @@
-module PageModel
+module Page
   
-  class LoginPage < PageModel::Base
+  class LoginPage < Page::Base
         
+    SIGNED_IN_MESSAGE = "Signed in successfully."
+      
     def visit
       session.visit new_user_session_path
     end
@@ -10,14 +12,14 @@ module PageModel
       session.fill_in 'Email', with: email
       session.fill_in 'Password', with: password
       session.click_button 'Sign in'
-      session.has_content?("Signed in successfully.").should == true
+      session.has_content?(SIGNED_IN_MESSAGE).should == true
     end
     
   end
 end
 
 def login_page
-  PageModel::LoginPage.new
+  Page::LoginPage.new
 end
 
-#World(PageModel)
+#World(Page)

@@ -33,7 +33,7 @@ Given /^a series exists named "([^"]*)"$/ do |name|
 end
 
 When /^I view that series$/ do
-  series_page.visit(last_series)
+  series_page.visit last_series
 end
 
 When /^I view the series index$/ do

@@ -1,4 +1,4 @@
-module PageModel
+module Page
   class Base
     
     include Rails.application.routes.url_helpers

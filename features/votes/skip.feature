@@ -6,16 +6,24 @@ Feature: Skip Submission
 
   Skipped submissions do not count towards the votes count for a series or submission.
 
-  Background:
-    Given I am authenticated
+  # Background:
+  #   Given I am authenticated
 
-  Scenario: Skipping a submission
-    Given a series exists
-    And that series has a submission "My Submission" with no votes
-    When I view that series
-    And I click the "Skip" button next to "My Submission"
-    Then I should see "My Submission" with 0 plus votes and 0 minus votes
-    And I should see "Your vote was recorded"
-    And I should see a vote review "You skipped this" for that submission
-    And that submission should have 0 votes
-    And that series should have 0 votes
+  # Scenario: Skipping a submission
+  #   Given a series exists
+  #   And that series has a submission "My Submission" with no votes
+  #   When I view that series
+  #   And I click the "Skip" button next to "My Submission"
+  #   Then I should see "My Submission" with 0 plus votes and 0 minus votes
+  #   And I should see "Your vote was recorded"
+  #   And I should see a vote review "You skipped this" for that submission
+  #   And that submission should have 0 votes
+  #   And that series should have 0 votes
+
+  # Scenario: Featured submission
+  #   And a series exists
+  #   And that series has a submission
+  #   And I have skipped that submission
+  #   When I view that series
+  #   Then I should not see a featured submission
+  #   And I should not see a message that I have voted on all the submissions

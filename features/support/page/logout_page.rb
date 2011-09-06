@@ -1,6 +1,6 @@
-module PageModel
+module Page
   
-  class LogoutPage < PageModel::Base
+  class LogoutPage < Page::Base
         
     def visit
       session.visit destroy_user_session_path
@@ -10,7 +10,7 @@ module PageModel
 end
 
 def logout_page
-  PageModel::LogoutPage.new
+  Page::LogoutPage.new
 end
 
 #World(PageModel)
