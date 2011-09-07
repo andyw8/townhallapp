@@ -14,6 +14,10 @@ Given /^the following series:$/ do |table|
   end
 end
 
+Given /^I am on the series index page$/ do
+  series_index_page.visit
+end
+
 Given /^I am viewing a series$/ do
   create_series
   series_page.visit(last_series)
@@ -66,9 +70,8 @@ Then /^the series owner of "([^"]*)" should be shown as "([^"]*)"$/ do |series_n
 end
 
 Then /^I should see the series in the order:$/ do |table|
-  actual_series = table.raw.flatten
-  expected_series = all('ul#series li a').collect(&:text)
-  expected_series.should == actual_series
+  expected_series = table.raw.flatten
+  series_index_page.series_names.should == expected_series
 end
 
 When /^I create a new series$/ do
@@ -78,11 +81,12 @@ end
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
   values = table.rows_hash
-  that_series = series_index_page.get_series(last_series)
-  that_series['users'].should == values['users']
-  that_series['votes'].should == values['votes']
-  that_series['submissions'].should == values['submissions']
-  
+  #that_series = series_index_page.get_series(last_series)
+  that_series = series_index_page.all_series[last_series.name]
+  that_series['users'].should == values['users'].to_i
+  that_series['votes'].should == values['votes'].to_i
+  that_series['submissions'].should == values['submissions'].to_i
+  p series_index_page.all_series
 end
 
 Then /^that series should have (\d+) votes$/ do |count|

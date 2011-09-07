@@ -69,6 +69,12 @@ module Page
         session.click_link "New Submission"
       end
       
+      def vote_on_submission(submission, position)
+        session.within("#submission-#{submission.id}") do
+          session.click_button "Vote #{position.titleize}"
+        end
+      end
+      
       private
             
       def submission_sel(submission)

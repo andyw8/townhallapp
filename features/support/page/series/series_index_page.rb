@@ -11,17 +11,20 @@ module Page
       end
   
       def series_names
-        # #series h1 ?
-        all('h1').collect(&:text)
+        session.all('#series li a').collect(&:text)
       end
       
-      def get_series(series)
-        prefix = "#series-#{series.id}"
-        {
-          'users'       => session.find(prefix + ' .users       .value').text,
-          'votes'       => session.find(prefix + ' .votes       .value').text,
-          'submissions' => session.find(prefix + ' .submissions .value').text
-        }
+      def all_series
+        result = {}
+        session.all('#series li').each do |s|
+          series_name = s.find('a').text
+          result[series_name] = {
+            'users'       => s.find('.users       .value').text.to_i,
+            'votes'       => s.find('.votes       .value').text.to_i,
+            'submissions' => s.find('.submissions .value').text.to_i
+          }
+        end
+        result
       end
   
     end

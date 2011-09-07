@@ -45,9 +45,7 @@ Given /^I have voted (on|for|against) that submission$/ do |position|
   position = "for" if position == "on"
   submission = last_submission
   series_page.visit(submission.series)
-  within("#submission-#{submission.id}") do
-    click_button "Vote #{position.titleize}"
-  end
+  series_page.vote_on_submission(submission, position)
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
