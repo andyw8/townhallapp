@@ -29,3 +29,5 @@ townhallapp.tmproj
 .idea/.rakeTasks
 
 .idea/.name
+
+db/test.sqlite3-journal
