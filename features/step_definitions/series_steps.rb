@@ -53,7 +53,7 @@ Given /^I leave the "([^"]*)" field blank$/ do |arg1|
 end
 
 Then /^I should see the series "([^"]*)"$/ do |name|
-  should have_css('h1', text: name)
+  series_index_page.series_names.include?(name).should == true
 end
 
 Then /^(\d+) series should exist$/ do |count|
@@ -78,11 +78,11 @@ end
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
   values = table.rows_hash
-  within("#series-#{last_series.id}") do
-    should have_css(".users .value", text: values['users'])
-    should have_css(".votes .value", text: values['votes'])
-    should have_css(".submissions .value", text: values['submissions'])
-  end
+  that_series = series_index_page.get_series(last_series)
+  that_series['users'].should == values['users']
+  that_series['votes'].should == values['votes']
+  that_series['submissions'].should == values['submissions']
+  
 end
 
 Then /^that series should have (\d+) votes$/ do |count|

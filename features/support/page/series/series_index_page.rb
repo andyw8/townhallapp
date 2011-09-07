@@ -10,6 +10,20 @@ module Page
         session.all('#series li').size
       end
   
+      def series_names
+        # #series h1 ?
+        all('h1').collect(&:text)
+      end
+      
+      def get_series(series)
+        prefix = "#series-#{series.id}"
+        {
+          'users'       => session.find(prefix + ' .users       .value').text,
+          'votes'       => session.find(prefix + ' .votes       .value').text,
+          'submissions' => session.find(prefix + ' .submissions .value').text
+        }
+      end
+  
     end
   end
 end
