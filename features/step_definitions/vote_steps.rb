@@ -14,8 +14,8 @@ end
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
-  series_page.plus_vote_count(submission).should == plus_votes.to_i
-  series_page.minus_vote_count(submission).should == minus_votes.to_i
+  series_page.plus_vote_count(submission).should == plus_votes
+  series_page.minus_vote_count(submission).should == minus_votes
 end
 
 When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submission_name|

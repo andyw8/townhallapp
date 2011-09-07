@@ -62,7 +62,7 @@ end
 
 Then /^(\d+) series should exist$/ do |count|
   series_index_page.visit
-  series_index_page.series_count.should == count.to_i
+  series_index_page.series_count.should == count
 end
 
 Then /^the series owner of "([^"]*)" should be shown as "([^"]*)"$/ do |series_name, email|

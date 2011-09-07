@@ -4,7 +4,7 @@ end
 
 def verify_submissions_count(series, count)
   series_page.visit(series)
-  series_page.submissions_count.should == count.to_i
+  series_page.submissions_count.should == count
 end
 
 def verify_submission_author(submission, email)
@@ -64,7 +64,7 @@ Then /^I should see the submissions in the order:$/ do |table|
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|
-  verify_submissions_count(last_series, count.to_i)
+  verify_submissions_count(last_series, count)
 end
 
 Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_name, email|
@@ -82,5 +82,5 @@ end
 
 Then /^that submission should have (\d+) votes$/ do |count|
   # should verify through UI, not DB
-  last_submission.votes_count.should == count.to_i
+  last_submission.votes_count.should == count
 end
