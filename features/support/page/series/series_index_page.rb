@@ -11,7 +11,7 @@ module Page
       end
   
       def series_names
-        session.all('#series li a').collect(&:text)
+        all_series.keys
       end
       
       def all_series
