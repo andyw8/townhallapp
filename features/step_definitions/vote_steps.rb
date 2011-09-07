@@ -1,9 +1,9 @@
 Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Factory(:submission, name: submission_name, series: last_series)
-  plus_votes.to_i.times do
+  plus_votes.times do
     Factory(:plus_vote, submission: submission)
   end
-  minus_votes.to_i.times do
+  minus_votes.times do
     Factory(:minus_vote, submission: submission)
   end
 end

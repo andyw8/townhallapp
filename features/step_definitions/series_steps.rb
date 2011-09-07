@@ -91,5 +91,5 @@ end
 
 Then /^that series should have (\d+) votes$/ do |count|
   # should verify through UI, not DB
-  last_series.votes_count.should == count.to_i
+  last_series.votes_count.should == count
 end
