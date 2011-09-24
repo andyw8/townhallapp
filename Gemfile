@@ -26,6 +26,6 @@ group :development, :test do
   gem 'rails3-generators'
   gem 'rb-fsevent' # Mac only
   gem 'rspec-rails'
-  gem 'shoulda'
+  gem 'shoulda', '>= 3.0.0.beta'
   gem 'sqlite3'
 end
