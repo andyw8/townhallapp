@@ -1,6 +1,6 @@
 class SeriesController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
     @series = Series.new
@@ -9,9 +9,9 @@ class SeriesController < ApplicationController
   def create
     @series = current_user.new_series(params[:series])
     if @series.save
-      redirect_to series_index_path, notice: "Successfully created series."
+      redirect_to series_index_path, :notice => "Successfully created series."
     else
-      render action: 'new'
+      render :action => 'new'
     end
   end
 
