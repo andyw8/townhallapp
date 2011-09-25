@@ -45,7 +45,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule: 
   exclude: *id001
-  enabled: true
+  enabled: false
 UncommunicativeModuleName: 
   accept: 
   - Inline::C
