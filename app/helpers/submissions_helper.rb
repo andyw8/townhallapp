@@ -5,8 +5,8 @@ module SubmissionsHelper
     result = []
     buttons.each_pair do |title, value|
       result << (button_to title,
-        {controller: :votes, action: :create, series_id: submission.series,
-          submission_id: submission, vote: value})
+        {:controller => :votes, :action => :create, :series_id => submission.series,
+          :submission_id => submission, :vote => value})
     end
     result.join
   end

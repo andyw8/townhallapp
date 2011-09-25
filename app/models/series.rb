@@ -3,7 +3,7 @@ class Series < ActiveRecord::Base
   attr_accessible :name
   attr_writer :random_element_picker
 
-  default_scope order: 'created_at DESC'
+  default_scope :order => 'created_at DESC'
 
   validates_presence_of :name, :user
 

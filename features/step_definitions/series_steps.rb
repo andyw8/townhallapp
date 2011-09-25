@@ -9,8 +9,8 @@ end
 Given /^the following series:$/ do |table|
   table.hashes.each do |hash|
     Factory(:series,
-      name: hash['name'],
-      created_at: Chronic.parse(hash['created']))
+      :name => hash['name'],
+      :created_at => Chronic.parse(hash['created']))
   end
 end
 
@@ -33,7 +33,7 @@ Given /^a series exists$/ do
 end
 
 Given /^a series exists named "([^"]*)"$/ do |name|
-  Factory(:series, name: name)
+  Factory(:series, :name => name)
 end
 
 When /^I view that series$/ do

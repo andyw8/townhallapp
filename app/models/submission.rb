@@ -1,6 +1,6 @@
 class Submission < ActiveRecord::Base
 
-  default_scope order: 'score DESC'
+  default_scope :order => 'score DESC'
 
   attr_accessible :name
 
@@ -50,7 +50,7 @@ class Submission < ActiveRecord::Base
 
   def new_vote(vote)
     # should this method really be in Vote ?
-    votes.new(vote: vote)
+    votes.new(:vote => vote)
   end
 
   private

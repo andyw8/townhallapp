@@ -1,15 +1,15 @@
 Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
-  submission = Factory(:submission, name: submission_name, series: last_series)
+  submission = Factory(:submission, :name => submission_name, :series => last_series)
   plus_votes.times do
-    Factory(:plus_vote, submission: submission)
+    Factory(:plus_vote, :submission => submission)
   end
   minus_votes.times do
-    Factory(:minus_vote, submission: submission)
+    Factory(:minus_vote, :submission => submission)
   end
 end
 
 Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  submission = Factory(:submission, name: submission_name, series: last_series)
+  submission = Factory(:submission, :name => submission_name, :series => last_series)
 end
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
@@ -38,7 +38,7 @@ Then /^I should not see a vote review for that submission$/ do
 end
 
 Given /^a user has voted for that submission$/ do
-  Factory(:vote, vote: 'PLUS', submission: last_submission)
+  Factory(:vote, :vote => 'PLUS', :submission =>last_submission)
 end
 
 Given /^I have voted (on|for|against) that submission$/ do |position|

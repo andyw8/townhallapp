@@ -9,8 +9,8 @@ module Page
     end
     
     def sign_in(email, password)
-      session.fill_in 'Email', with: email
-      session.fill_in 'Password', with: password
+      session.fill_in 'Email', :with => email
+      session.fill_in 'Password', :with => password
       session.click_button 'Sign in'
       session.has_content?(SIGNED_IN_MESSAGE).should == true
     end

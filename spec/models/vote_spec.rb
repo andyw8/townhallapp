@@ -6,7 +6,7 @@ describe Vote do
   it { should validate_presence_of(:submission) }
   it { should validate_presence_of(:vote) }
 
-  context "", use_real_database: true do
+  context "", :use_real_database => true do
     # need to create a record for shoulda's validate_uniqueness_of
     subject{ Factory(:vote) }
     it { should validate_uniqueness_of(:user_id).scoped_to(:submission_id) }

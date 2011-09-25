@@ -88,7 +88,7 @@ describe Submission do
 
   describe "#vote_by_user" do
     it "returns the vote (e.g. PLUS or MINUS) of the given user" do
-      submission.stub_chain(:all_votes, :find_by_user_id).and_return(mock('Vote', vote: 'PLUS'))
+      submission.stub_chain(:all_votes, :find_by_user_id).and_return(mock('Vote', :vote => 'PLUS'))
       submission.vote_by_user(mock('User')).should == 'PLUS'
     end
   end

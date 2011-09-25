@@ -1,10 +1,11 @@
 PASSWORD = 'password'
+EMAIL = 'blah@testing.com'
 
 def create_account(email, password=PASSWORD)
   User.create!(
-    email: email,
-    password: password,
-    password_confirmation: password)
+    :email => email,
+    :password => password,
+    :password_confirmation => password)
 end
 
 def sign_in(email, password=PASSWORD)
@@ -12,17 +13,14 @@ def sign_in(email, password=PASSWORD)
   login_page.sign_in(email, password)
 end
 
-def create_account_and_sign_in(email)
-  create_account email
-  sign_in email
-end
-
 Given /^I am authenticated$/ do
-  create_account_and_sign_in 'blah@testing.com'
+  create_account EMAIL
+  sign_in EMAIL
 end
 
 Given /^I am authenticated as "([^"]*)"$/ do |email|
-  create_account_and_sign_in email
+  create_account email
+  sign_in email
 end
 
 Given /^I am not authenticated$/ do
@@ -34,16 +32,14 @@ Given /^I have signed out$/ do
 end
 
 Given /^I am signed up as "([^"]*)"$/ do |email_and_password|
-  email = email_and_password.split('/').first
-  password = email_and_password.split('/').last
-  create_account(email, password)
+  elements = email_and_password.split('/')
+  create_account(elements.first, elements.last)
 end
 
 Given /^I am signed in as "([^"]*)"$/ do |email_and_password|
-  email = email_and_password.split('/').first
-  password = email_and_password.split('/').last
+  elements = email_and_password.split('/')
+  email = elements.first
+  password = elements.last
   create_account(email, password)
   sign_in(email, password)
 end
-
-
