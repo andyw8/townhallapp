@@ -84,7 +84,7 @@ Duplication:
   max_calls: 1
 UtilityFunction: 
   max_helper_calls: 1
-  exclude: []
+  exclude: ['all_test_files']
 
   enabled: true
 Attribute: 
