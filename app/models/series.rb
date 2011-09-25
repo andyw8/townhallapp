@@ -44,7 +44,7 @@ class Series < ActiveRecord::Base
 
   def submissions_not_yet_voted_on(user)
     # this should probably be done as a database query
-    submissions.reject { |s| s.user_has_voted?(user) }
+    submissions.reject { |submission| submission.user_has_voted?(user) }
   end
 
   def random_element_picker

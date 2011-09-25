@@ -16,12 +16,12 @@ module Page
       
       def all_series
         result = {}
-        session.all('#series li').each do |s|
-          series_name = s.find('a').text
+        session.all('#series li').each do |element|
+          series_name = element.find('a').text
           result[series_name] = {
-            'users'       => s.find('.users       .value').text.to_i,
-            'votes'       => s.find('.votes       .value').text.to_i,
-            'submissions' => s.find('.submissions .value').text.to_i
+            'users'       => element.find('.users       .value').text.to_i,
+            'votes'       => element.find('.votes       .value').text.to_i,
+            'submissions' => element.find('.submissions .value').text.to_i
           }
         end
         result
