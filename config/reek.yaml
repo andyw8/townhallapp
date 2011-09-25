@@ -34,17 +34,23 @@ LongParameterList:
     initialize: 
       max_params: 5
 FeatureEnvy: 
-  exclude: &id001 []
-
+  exclude:
+  - 'RandomElementPicker#random_element'
+  - 'SubmissionsHelper#vote_buttons'
+  - 'create_submissions_for_series'
+  - 'Page::Series::Show#submission_sel'
+  - 'Page::Series::Index#all_series'
   enabled: true
 ClassVariable: 
-  exclude: *id001
+  exclude: []
   enabled: true
 BooleanParameter: 
-  exclude: *id001
+  exclude: []
   enabled: true
+
+# disable this as I don't think it's necessary
 IrresponsibleModule: 
-  exclude: *id001
+  exclude: []
   enabled: false
 UncommunicativeModuleName: 
   accept: 
@@ -58,7 +64,7 @@ UncommunicativeModuleName:
 NestedIterators: 
   ignore_iterators: []
 
-  exclude: []
+  exclude: ['ErrorMessagesHelper#error_messages_for']
 
   enabled: true
   max_allowed_nesting: 1
@@ -66,13 +72,15 @@ LongMethod:
   max_statements: 5
   exclude: 
   - initialize
+  - 'ErrorMessagesHelper#error_messages_for' # third-party code
+  - !ruby/regexp /self\.up/
   enabled: true
 Duplication: 
   allow_calls: []
 
   exclude: []
 
-  enabled: true
+  enabled: false # TEMPORARYYYYYYYY
   max_calls: 1
 UtilityFunction: 
   max_helper_calls: 1
@@ -85,9 +93,9 @@ Attribute:
   enabled: false
 UncommunicativeVariableName: 
   accept: []
-
-  exclude: []
-
+  exclude:
+  - 'ErrorMessagesHelper#error_messages_for' # third-party code
+  - !ruby/regexp /self\.up/
   enabled: true
   reject: 
   - !ruby/regexp /^.$/
@@ -105,10 +113,10 @@ DataClump:
   max_copies: 2
   min_clump_size: 2
 ControlCouple: 
-  exclude: *id001
   enabled: true
+  exclude:
+  - 'WithinHelpers#with_scope' # third-party code
 LongYieldList: 
   max_params: 3
   exclude: []
-
   enabled: true
