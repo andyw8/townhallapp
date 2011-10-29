@@ -45,8 +45,9 @@ ClassVariable:
   exclude: []
   enabled: true
 BooleanParameter: 
-  exclude: []
   enabled: true
+  exclude:
+  - 'LayoutHelper#title'
 
 # disable this as I don't think it's necessary
 IrresponsibleModule: 
