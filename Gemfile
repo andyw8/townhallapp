@@ -17,6 +17,7 @@ group :development do
   gem 'reek'
   gem 'flay'
   gem 'flog'
+  gem 'spork'
 end
 
 group :development, :test do

@@ -219,6 +219,7 @@ GEM
     simple_form (1.5.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    spork (0.9.0.rc9)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -265,4 +266,5 @@ DEPENDENCIES
   rspec-rails
   shoulda (>= 3.0.0.beta)
   simple_form
+  spork
   sqlite3
