@@ -9,10 +9,14 @@ group :development do
   gem 'git-up'
   gem 'launchy' # used for cucumber debugging
   gem 'nifty-generators'
-  # gem 'watchr' # note that ruby-fsevent doesn't work in ruby 1.9
   gem 'growl'
   gem 'growl_notify'
   gem 'guard-cucumber'
+  gem 'rails3-generators'
+  gem 'metric_fu'
+  gem 'reek'
+  gem 'flay'
+  gem 'flog'
 end
 
 group :development, :test do
@@ -23,7 +27,6 @@ group :development, :test do
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
   gem 'rails-footnotes', '>= 3.7'
-  gem 'rails3-generators'
   gem 'rb-fsevent' # Mac only
   gem 'rspec-rails'
   gem 'shoulda', '>= 3.0.0.beta'
