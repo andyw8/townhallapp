@@ -1,4 +1,6 @@
-Factory.define :series do |f|
-  f.name "Series"
-  f.association :user
+FactoryGirl.define do
+  factory :series do
+    name "Series"
+    association :user
+  end
 end

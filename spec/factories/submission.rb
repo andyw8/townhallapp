@@ -1,5 +1,7 @@
-Factory.define :submission do |s|
-  s.name "Submission"
-  s.association :user
-  s.association :series
+FactoryGirl.define do
+  factory :submission do
+    name "Submission"
+    association :user
+    association :series
+  end
 end
