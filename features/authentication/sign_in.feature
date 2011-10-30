@@ -1,18 +1,13 @@
 Feature: Sign in
 
-  Scenario: User signs in successfully
+  Scenario: Valid credentials
+  
     Given I am signed up as "user@example.com/password"
-    When I go to the sign-in page
-    And fill in "Email" with "user@example.com"
-    And fill in "Password" with "password"
-    And press "Sign in"
-    Then I should see "Signed in successfully."
-    And should not see "Sign in"
+    When I sign-in with those credentials
+    Then I should be signed-in
 
-  Scenario: User signs in with incorrect credentials
+  Scenario: Invalid credentials
     Given I am signed up as "user@example.com/password"
-    When I go to the sign-in page
-    And fill in "Email" with "blah"
-    And press "Sign in"
-    Then I should be on the sign-in page
-    And should see "Invalid email or password."
+    When I sign-in as "user@example.com/hello"
+    Then I should not be signed-in
+    And I should be on the sign-in page

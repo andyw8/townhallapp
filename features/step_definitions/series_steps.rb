@@ -78,6 +78,13 @@ When /^I create a new series$/ do
   Factory(:series)
 end
 
+When /^I create a new series "([^"]*)"$/ do |name|
+  visit new_series_path
+  fill_in :name, :with => name
+  click_button 'Create Series'
+  should have_content('Successfully created series')
+end
+
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
   values = table.rows_hash
@@ -92,4 +99,13 @@ end
 Then /^that series should have (\d+) votes$/ do |count|
   # should verify through UI, not DB
   last_series.votes_count.should == count
+end
+
+When /^I try to create a new series$/ do
+  click_link 'New Series'
+end
+
+When /^I try to create a series without a name$/ do
+  visit new_series_path
+  click_button 'Create Series'
 end

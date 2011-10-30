@@ -11,7 +11,7 @@ Feature: Featured submission
    Given a submission exists for that series
     And I have voted for that submission
     When I view that series
-    Then I should see "You have voted on all the submissions in this series"
+    Then I should see a message "You have voted on all the submissions in this series"
 
   Scenario: Message for a series a series with no submissions
     When I view that series

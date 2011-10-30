@@ -13,7 +13,7 @@ Feature: Cast vote
     When I view that series
     And I click the "Vote For" button next to "My Submission"
     Then I should see "My Submission" with 1 plus votes and 0 minus votes
-    And I should see "Your vote was recorded"
+    And I should see the notice "Your vote was recorded"
 
   Scenario: Voting against a submission with no votes
     Given a series exists
@@ -21,7 +21,7 @@ Feature: Cast vote
     When I view that series
     And I click the "Vote Against" button next to "My Submission"
     Then I should see "My Submission" with 0 plus votes and 1 minus votes
-    And I should see "Your vote was recorded"
+    And I should see the notice "Your vote was recorded"
 
   Scenario: Attempting to re-vote for a submission
     Given a series exists

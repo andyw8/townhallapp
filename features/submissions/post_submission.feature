@@ -10,7 +10,7 @@ Feature: Post Submission
     When I follow "New Submission"
     And I fill in "Name" with "Spend more money on education"
     And I press "Create Submission"
-    Then I should see "Successfully created submission"
+    Then I should see the notice "Successfully created submission."
     And 1 submissions should exist for that series
     And I should see that the author of "Spend more money on education" is "james@example.com"
 
@@ -19,7 +19,7 @@ Feature: Post Submission
     And I am creating a new submission for a series
     And I leave the "name" field blank
     When I press "Create Submission"
-    Then I should see "Name can't be blank"
+    Then I should see the error "Name can't be blank"
     And 0 submissions should exist for that series
 
   Scenario: Adding a submission when not authenticated
