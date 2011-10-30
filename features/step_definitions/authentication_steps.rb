@@ -27,7 +27,7 @@ Given /^I am not authenticated$/ do
   logout_page.visit
 end
 
-Given /^I have signed out$/ do
+Given /^I have signed out|I sign out$/ do
   logout_page.visit
 end
 

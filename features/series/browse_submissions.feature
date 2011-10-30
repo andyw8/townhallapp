@@ -14,7 +14,7 @@ Feature: Browse Submissions
     Given a series exists
     And no are no submissions for that series
     When I view that series
-    Then I should see "There are no submissions"
+    Then I should see a message "There are no submissions"
 
   Scenario: Submission visibility when viewing a series
 
@@ -25,5 +25,4 @@ Feature: Browse Submissions
       | Submission A | Series 1 |
       | Submission B | Series 2 |
     When I view the series "Series 1"
-    Then I should see "Submission A"
-    But I should not see "Submission B"
+    Then I should see only the submission "Submission A"

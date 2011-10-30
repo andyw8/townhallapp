@@ -80,7 +80,30 @@ Given /^that series has a submission "([^"]*)"$/ do |name|
   Factory(:submission, :name => name, :series => last_series)
 end
 
+When /^I try to create a submission without a name$/ do
+  series = Factory(:series)
+  visit series_path(series)
+  click_link 'New Submission'
+  click_button 'Create Submission'
+end
+
+
 Then /^that submission should have (\d+) votes$/ do |count|
   # should verify through UI, not DB
   last_submission.votes_count.should == count
+end
+
+When /^I post a submission "([^"]*)"$/ do |name|
+  click_link 'New Submission'
+  fill_in :name, :with => name
+  click_button 'Create Submission'
+end
+
+Then /^I should see only the submission "([^"]*)"$/ do |expected|
+  actual = all('#submissions .name').collect(&:text)
+  actual.should == [expected]
+end
+
+Then /^I should not see a New Submission link$/ do
+  should have_no_link('New Submission')
 end
