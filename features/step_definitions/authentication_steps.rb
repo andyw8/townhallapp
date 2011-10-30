@@ -59,6 +59,6 @@ When /^I sign\-in with those credentials$/ do
   sign_in(@email, @password)
 end
 
-Then /^I should be signed\-in$/ do
+Then /^I should be signed in$/ do
   should have_content("Signed in successfully.")
 end

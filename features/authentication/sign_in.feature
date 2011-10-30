@@ -4,7 +4,7 @@ Feature: Sign in
   
     Given I am signed up as "user@example.com/password"
     When I sign-in with those credentials
-    Then I should be signed-in
+    Then I should be signed in
 
   Scenario: Invalid credentials
     Given I am signed up as "user@example.com/password"
