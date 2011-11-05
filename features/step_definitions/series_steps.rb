@@ -93,7 +93,6 @@ Then /^the stats for that series should be:$/ do |table|
   that_series['users'].should == values['users'].to_i
   that_series['votes'].should == values['votes'].to_i
   that_series['submissions'].should == values['submissions'].to_i
-  p series_index_page.all_series
 end
 
 Then /^that series should have (\d+) votes$/ do |count|
