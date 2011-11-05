@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/andyw8/nulldb.git
+  revision: 7687d461804a7dbdddbf9b1a03f055bb530b7bd2
+  specs:
+    activerecord-nulldb-adapter (0.2.1)
+      activerecord (>= 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -26,8 +33,6 @@ GEM
       activesupport (= 3.1.0)
       arel (~> 2.2.1)
       tzinfo (~> 0.3.29)
-    activerecord-nulldb-adapter (0.2.0)
-      activerecord (>= 2.0.0)
     activeresource (3.1.0)
       activemodel (= 3.1.0)
       activesupport (= 3.1.0)
@@ -231,7 +236,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.29)
+    tzinfo (0.3.30)
     warden (1.0.5)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -241,7 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-nulldb-adapter
+  activerecord-nulldb-adapter!
   capybara
   chronic
   cucumber-rails

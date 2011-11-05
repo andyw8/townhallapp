@@ -21,7 +21,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'activerecord-nulldb-adapter'
+  gem 'activerecord-nulldb-adapter', :git => 'git://github.com/andyw8/nulldb.git'
   gem 'capybara'
   gem 'chronic' # for easy date/time parsing
   gem 'cucumber-rails'
