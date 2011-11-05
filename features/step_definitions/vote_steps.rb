@@ -37,7 +37,7 @@ Then /^I should not see a vote review for that submission$/ do
   series_page.has_vote_review?(submission).should == false
 end
 
-Given /^a user has voted for that submission$/ do
+Given /^(?:a|another) user has voted for that submission$/ do
   Factory(:vote, :vote => 'PLUS', :submission =>last_submission)
 end
 
