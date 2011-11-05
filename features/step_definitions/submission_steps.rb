@@ -82,7 +82,7 @@ end
 
 When /^I try to create a submission without a name$/ do
   series = Factory(:series)
-  visit series_path(series)
+  series_page.visit series
   click_link 'New Submission'
   click_button 'Create Submission'
 end
@@ -95,8 +95,7 @@ end
 
 When /^I post a submission "([^"]*)"$/ do |name|
   click_link 'New Submission'
-  fill_in :name, :with => name
-  click_button 'Create Submission'
+  new_submission_page.create(name)
 end
 
 Then /^I should see only the submission "([^"]*)"$/ do |expected|

@@ -57,7 +57,7 @@ Given /^I leave the "([^"]*)" field blank$/ do |arg1|
 end
 
 Then /^I should see the series "([^"]*)"$/ do |name|
-  series_index_page.series_names.include?(name).should == true
+  series_index_page.series_names.should_includename
 end
 
 Then /^(\d+) series should exist$/ do |count|
@@ -79,10 +79,7 @@ When /^I create a new series$/ do
 end
 
 When /^I create a new series "([^"]*)"$/ do |name|
-  visit new_series_path
-  fill_in :name, :with => name
-  click_button 'Create Series'
-  should have_content('Successfully created series')
+  new_series_page.create name
 end
 
 Then /^the stats for that series should be:$/ do |table|
@@ -101,10 +98,10 @@ Then /^that series should have (\d+) votes$/ do |count|
 end
 
 When /^I try to create a new series$/ do
-  click_link 'New Series'
+  new_series_page.visit
 end
 
 When /^I try to create a series without a name$/ do
-  visit new_series_path
+  new_series_page.visit
   click_button 'Create Series'
 end

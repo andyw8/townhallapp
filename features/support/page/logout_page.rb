@@ -2,8 +2,12 @@ module Page
   
   class LogoutPage < Page::Base
         
+    def path
+      destroy_user_session_path
+    end
+    
     def visit
-      session.visit destroy_user_session_path
+      session.visit path
     end
     
   end

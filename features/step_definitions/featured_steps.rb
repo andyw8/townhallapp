@@ -8,17 +8,17 @@ Then /^the featured submission should be "([^"]*)"$/ do |name|
 end
 
 Then /^I should see a message that I have voted on all the submissions$/ do
-  series_page.has_all_voted_on_message?.should == true
+  series_page.should have_all_voted_on_message
 end
 
 Then /^I should not see a message that I have voted on all the submissions$/ do
-  series_page.has_all_voted_on_message?.should == false
+  series_page.should_not have_all_voted_on_message
 end
 
 Then /^I should not see a featured submission$/ do
-  series_page.has_featured_submission?.should == false
+  series_page.should_not have_featured_submission
 end
 
 Then /^I should see a featured submission$/ do
-  series_page.has_featured_submission?.should == true
+  series_page.should have_featured_submission
 end

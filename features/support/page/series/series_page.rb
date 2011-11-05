@@ -2,8 +2,12 @@ module Page
   module Series
     class Show < Page::Base
 
+      def path(series)
+        series_path(series)
+      end
+
       def visit(series)
-        session.visit series_path(series)
+        session.visit path(series)
       end
 
       def has_featured_submission?
@@ -19,7 +23,7 @@ module Page
       end
   
       def click_button_for_submission(button_label, submission_name)
-        submission = Submission.find_by_name(submission_name)
+        submission = ::Submission.find_by_name(submission_name)
         session.within(submission_sel(submission)) do
           session.click_button button_label
         end

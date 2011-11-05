@@ -3,7 +3,14 @@ module Page
     class New < Page::Base
 
       def visit
-        session.visit new_series_path
+        Capybara.current_session.visit new_series_path
+      end
+      
+      def create(name)
+        visit
+        fill_in :name, :with => name
+        click_button 'Create Series'
+        should have_content('Successfully created series')
       end
 
     end

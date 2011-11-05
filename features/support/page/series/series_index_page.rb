@@ -2,8 +2,12 @@ module Page
   module Series
     class Index < Page::Base
 
+      def path
+        series_index_path
+      end
+
       def visit
-        session.visit series_index_path
+        session.visit path
       end
 
       def series_count

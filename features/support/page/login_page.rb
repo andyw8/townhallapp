@@ -3,9 +3,13 @@ module Page
   class LoginPage < Page::Base
         
     SIGNED_IN_MESSAGE = "Signed in successfully."
-      
+    
+    def path
+      new_user_session_path
+    end
+    
     def visit
-      session.visit new_user_session_path
+      session.visit path
     end
     
     def sign_in(email, password)
