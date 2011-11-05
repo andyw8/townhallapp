@@ -6,6 +6,8 @@ Feature: Review vote
 
   Scenario: Guest user views a submission that no-one has voted on
 
+    Only sign-in users can see vote reviews
+
     Given a submission exists
     When I view that submission's series
     Then I should not see a vote review for that submission
@@ -19,13 +21,17 @@ Feature: Review vote
 
   Scenario: Authenticated user views a submission someone else has voted on
 
+    Authenticated users should not see vote reviews for another user's votes
+
     Given I am authenticated
     And a submission exists
-    And a user has voted for that submission
+    And another user has voted for that submission
     When I view that submission's series
     Then I should not see a vote review for that submission
 
   Scenario Outline: Authenticated user views a submission he has voted for
+
+    Authenticated users should vote reviews for submissions they voted on
 
     Given I am authenticated
     And a submission exists

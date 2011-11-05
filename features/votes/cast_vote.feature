@@ -7,7 +7,10 @@ Feature: Cast vote
   Background:
     Given I am authenticated
 
-  Scenario: Voting for a submission with no votes
+  Scenario: Voting for a submission
+  
+    Users can vote for a submission
+  
     Given a series exists
     And that series has a submission "My Submission" with no votes
     When I view that series
@@ -16,6 +19,9 @@ Feature: Cast vote
     And I should see the notice "Your vote was recorded"
 
   Scenario: Voting against a submission with no votes
+  
+    Users can vote against a submission
+  
     Given a series exists
     And that series has a submission "My Submission" with no votes
     When I view that series
@@ -24,6 +30,9 @@ Feature: Cast vote
     And I should see the notice "Your vote was recorded"
 
   Scenario: Attempting to re-vote for a submission
+  
+    Users cannot vote again for the same submission
+  
     Given a series exists
     And that series has a submission "My Submission" with no votes
     When I view that series
@@ -32,6 +41,9 @@ Feature: Cast vote
     And I should not see a Vote button next to "My Submission"
 
   Scenario: User signs out then attempts to vote
+  
+    Only signed-in users can vote
+  
     Given I have signed out
     And a series exists
     And that series has a submission "My Submission" with no votes
