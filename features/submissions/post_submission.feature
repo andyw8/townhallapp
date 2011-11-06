@@ -15,6 +15,7 @@ Feature: Post Submission
     And 1 submissions should exist for that series
     And I should see that the author of "Spend more money on education" is "james@example.com"
 
+  @pending
   Scenario: Adding a submission without a name
   
     Submissions must have a name

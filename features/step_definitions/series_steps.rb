@@ -20,7 +20,7 @@ end
 
 Given /^I am viewing a series$/ do
   create_series
-  series_page.visit(last_series)
+  series_page.visit last_series
 end
 
 When /^I view the series "([^"]*)"$/ do |name|
@@ -103,5 +103,5 @@ end
 
 When /^I try to create a series without a name$/ do
   new_series_page.visit
-  click_button 'Create Series'
+  new_series_page.create ''
 end

@@ -84,7 +84,7 @@ When /^I try to create a submission without a name$/ do
   series = Factory(:series)
   series_page.visit series
   click_link 'New Submission'
-  click_button 'Create Submission'
+  new_submission_page.create_submission('')
 end
 
 
@@ -94,7 +94,7 @@ Then /^that submission should have (\d+) votes$/ do |count|
 end
 
 When /^I post a submission "([^"]*)"$/ do |name|
-  click_link 'New Submission'
+  series_page.new_submission
   new_submission_page.create(name)
 end
 

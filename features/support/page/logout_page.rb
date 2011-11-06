@@ -5,11 +5,7 @@ module Page
     def path
       destroy_user_session_path
     end
-    
-    def visit
-      session.visit path
-    end
-    
+
   end
 end
 

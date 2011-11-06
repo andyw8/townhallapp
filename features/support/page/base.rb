@@ -2,6 +2,10 @@ module Page
   class Base
     
     include Rails.application.routes.url_helpers
+
+    def visit(*args)
+      session.visit path(*args)
+    end
   
     def page_title
       find('h1').text

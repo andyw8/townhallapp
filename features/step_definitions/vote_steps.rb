@@ -28,13 +28,13 @@ end
 
 Then /^I should not see a Vote button next to "([^"]*)"$/ do |submission_name|
   submission = Submission.find_by_name(submission_name)
-  series_page.has_vote_button?(submission).should == false
+  series_page.should_not have_vote_button?(submission)
 end
 
 Then /^I should not see a vote review for that submission$/ do
   submission = last_submission
-  series_page.visit(submission.series)
-  series_page.has_vote_review?(submission).should == false
+  series_page.visit submission.series 
+  series_page.should_not have_vote_review?(submission)
 end
 
 Given /^(?:a|another) user has voted for that submission$/ do
@@ -44,12 +44,12 @@ end
 Given /^I have voted (on|for|against) that submission$/ do |position|
   position = "for" if position == "on"
   submission = last_submission
-  series_page.visit(submission.series)
-  series_page.vote_on_submission(submission, position)
+  series_page.visit submission.series
+  series_page.vote_on_submission submission, position
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
   submission = last_submission
-  series_page.visit(submission.series)
+  series_page.visit submission.series
   series_page.vote_review_text(submission).should == review
 end

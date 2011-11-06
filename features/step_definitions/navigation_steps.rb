@@ -3,5 +3,5 @@ Then /^I should be on the sign\-in page$/ do
 end
 
 Then /^I should be on the home page$/ do
-  page.current_url.should == root_url
+  page.current_path.should == home_page.path
 end
