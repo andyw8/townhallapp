@@ -34,6 +34,8 @@ module Page
     def method_missing(*args)
       if session.respond_to?(args.first)
         session.send(*args)
+      else
+        raise "Invalid call: #{args.inspect}"
       end
     end
     
