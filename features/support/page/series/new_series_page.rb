@@ -9,7 +9,6 @@ module SeriesPage
       visit
       fill_in :name, :with => name
       click_button 'Create Series'
-      should have_content('Successfully created series')
     end
 
   end
