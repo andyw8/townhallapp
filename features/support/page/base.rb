@@ -23,6 +23,10 @@ module Page
       find('#flash_notice').text
     end
     
+    def on?
+      current_path == path
+    end
+    
     def has_message?(message)
       has_content?(message)
     end
