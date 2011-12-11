@@ -28,13 +28,13 @@ end
 
 Then /^I should not see a Vote button next to "([^"]*)"$/ do |submission_name|
   submission = Submission.find_by_name(submission_name)
-  series_page.should_not have_vote_button?(submission)
+  series_page.should_not have_vote_button(submission)
 end
 
 Then /^I should not see a vote review for that submission$/ do
   submission = last_submission
   series_page.visit submission.series 
-  series_page.should_not have_vote_review?(submission)
+  series_page.should_not have_vote_review(submission)
 end
 
 Given /^(?:a|another) user has voted for that submission$/ do

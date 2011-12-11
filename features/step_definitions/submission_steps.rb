@@ -84,7 +84,7 @@ When /^I try to create a submission without a name$/ do
   series = Factory(:series)
   series_page.visit series
   click_link 'New Submission'
-  new_submission_page.create_submission('')
+  new_submission_page.create('')
 end
 
 
