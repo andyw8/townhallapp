@@ -1,4 +1,4 @@
-Given /^that series has a submission "([^"]*)" with (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |submission_name, plus_votes, minus_votes|
+Given /^that series has a submission "([^"]*)" with (\d+) plus votes? and (\d+) minus votes??$/ do |submission_name, plus_votes, minus_votes|
   @submission = Factory(:submission, :name => submission_name, :series => @series)
   plus_votes.times do
     Factory(:plus_vote, :submission => submission)
@@ -8,7 +8,7 @@ Given /^that series has a submission "([^"]*)" with (\d+) plus vote(?:s?) and (\
   end
 end
 
-Given /^that series has a submission with (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |plus_votes, minus_votes|
+Given /^that series has a submission with (\d+) plus votes? and (\d+) minus votes??$/ do |plus_votes, minus_votes|
   @submission = Factory(:submission, :series => @series)
   plus_votes.times do
     Factory(:plus_vote, :submission => @submission)
@@ -26,13 +26,13 @@ Given /^that series has a submission with no votes$/ do
   @submission = Factory(:submission, :series => @series)
 end
 
-Then /^"([^"]*)" should have (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |submission_name, plus_votes, minus_votes|
+Then /^"([^"]*)" should have (\d+) plus votes? and (\d+) minus votes??$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
   series_page.plus_vote_count(submission).should == plus_votes
   series_page.minus_vote_count(submission).should == minus_votes
 end
 
-Then /^that submission should have (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)$/ do |plus_votes, minus_votes|
+Then /^that submission should have (\d+) plus votes? and (\d+) minus votes?$/ do |plus_votes, minus_votes|
   series_page.plus_vote_count(@submission).should == plus_votes
   series_page.minus_vote_count(@submission).should == minus_votes
 end
