@@ -4,7 +4,7 @@ Feature: Ranking
 
   A new submission has a score of 0. A plus vote adds 1 point, and a minus vote subtracts 1 point.
 
-  It's possible for a submission to a negative score.
+  It's possible for a submission to have a negative score.
 
   Scenario: Single plus vote
     Given a series with these submissions and votes:
