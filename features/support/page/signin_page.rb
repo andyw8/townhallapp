@@ -1,13 +1,15 @@
-class SigninPage < Page::Base
+module Page
+  class Signin < Page::Base
     
-  def path
-    new_user_session_path
-  end
+    def path
+      new_user_session_path
+    end
 
+  end
 end
 
 def signin_page
-  SigninPage.new
+  Page::Signin.new
 end
 
 #World(Page)

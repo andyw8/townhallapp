@@ -1,4 +1,4 @@
-module SeriesPage
+module Page
   class New < Page::Base
 
     def path
@@ -15,7 +15,7 @@ module SeriesPage
 end
 
 def new_series_page
-  SeriesPage::New.new
+  Page::New.new
 end
 
 #World(PageModel)
