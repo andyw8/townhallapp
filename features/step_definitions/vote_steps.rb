@@ -12,7 +12,7 @@ Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_na
   submission = Factory(:submission, :name => submission_name, :series => @series)
 end
 
-Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
+Then /^"([^"]*)" should have (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
   series_page.plus_vote_count(submission).should == plus_votes
   series_page.minus_vote_count(submission).should == minus_votes
@@ -22,7 +22,15 @@ When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submis
   series_page.click_button_for_submission(button_label, submission_name)
 end
 
-Then /^I should not see any vote buttons$/ do
+When /^I vote for "([^"]*)"$/ do |submission_name|
+  series_page.click_button_for_submission("Vote For", submission_name)
+end
+
+When /^I vote against "([^"]*)"$/ do |submission_name|
+  series_page.click_button_for_submission("Vote Against", submission_name)
+end
+
+Then /^I should not be able to vote$/ do
   series_page.vote_buttons.should be_empty
 end
 

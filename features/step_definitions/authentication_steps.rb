@@ -23,7 +23,7 @@ Given /^I am authenticated as "([^"]*)"$/ do |email|
   sign_in email
 end
 
-Given /^I am not authenticated|I have signed out|I sign out$/ do
+Given /^I am not authenticated|I have signed out|I sign out|I am not signed in$/ do
   visit destroy_user_session_path
 end
 

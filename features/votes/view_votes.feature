@@ -8,16 +8,16 @@ Feature: View votes
     Given a series exists
     And that series has a submission "My Submission" with 0 plus votes and 0 minus votes
     When I view that series
-    Then I should see "My Submission" with 0 plus votes and 0 minus votes
+    Then "My Submission" should have 0 plus votes and 0 minus votes
 
   Scenario: A submission with one vote
     Given a series exists
     And that series has a submission "My Submission" with 1 plus votes and 0 minus votes
     When I view that series
-    Then I should see "My Submission" with 1 plus votes and 0 minus votes
+    Then "My Submission" should have 1 plus votes and 0 minus votes
 
   Scenario: A submission with several votes
     Given a series exists
     And that series has a submission "My Submission" with 2 plus votes and 1 minus votes
     When I view that series
-    Then I should see "My Submission" with 2 plus votes and 1 minus votes
+    Then "My Submission" should have 2 plus votes and 1 minus votes
