@@ -16,7 +16,6 @@ Feature: Featured submission
   Scenario: Message for a series a series with no submissions
     When I view that series
     Then I should not see a featured submission
-    And I should not see a message that I have voted on all the submissions
 
   Scenario: A series with one submission, which I haven't voted on
     And that series has a submission "Submission 1"
@@ -38,7 +37,7 @@ Feature: Featured submission
      And I have voted on that submission
      When I view that series
      Then I should not see a featured submission
-     And I should see a message that I have voted on all the submissions
+     But I should see a message that I have voted on all the submissions
 
   Scenario: A series with two submissions, none of which I've voted on
     And that series has a submission "Submission 1"
