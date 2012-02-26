@@ -1,7 +1,3 @@
-def last_series
-  Series.last
-end
-
 def create_series
   Factory(:series)
 end
@@ -19,8 +15,8 @@ Given /^I am on the series index page$/ do
 end
 
 Given /^I am viewing a series$/ do
-  create_series
-  series_page.visit last_series
+  @series = create_series
+  series_page.visit @series
 end
 
 When /^I view the series "([^"]*)"$/ do |name|
@@ -29,15 +25,15 @@ When /^I view the series "([^"]*)"$/ do |name|
 end
 
 Given /^a series exists$/ do
-  Factory(:series)
+  @series = Factory(:series)
 end
 
 Given /^a series exists named "([^"]*)"$/ do |name|
-  Factory(:series, :name => name)
+  @series = Factory(:series, :name => name)
 end
 
 When /^I view that series$/ do
-  series_page.visit last_series
+  series_page.visit @series
 end
 
 When /^I view the series index$/ do
@@ -75,7 +71,7 @@ Then /^I should see the series in the order:$/ do |table|
 end
 
 When /^I create a new series$/ do
-  Factory(:series)
+  @series = Factory(:series)
 end
 
 When /^I create a new series "([^"]*)"$/ do |name|
@@ -85,16 +81,15 @@ end
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
   values = table.rows_hash
-  #that_series = series_index_page.get_series(last_series)
-  that_series = series_index_page.all_series[last_series.name]
+  that_series = series_index_page.all_series[@series.name]
   that_series['users'].should == values['users'].to_i
   that_series['votes'].should == values['votes'].to_i
   that_series['submissions'].should == values['submissions'].to_i
 end
 
 Then /^that series should have (\d+) votes$/ do |count|
-  # should verify through UI, not DB
-  last_series.votes_count.should == count
+  # TODO should verify through UI, not DB
+  @series.votes_count.should == count
 end
 
 When /^I try to create a new series$/ do

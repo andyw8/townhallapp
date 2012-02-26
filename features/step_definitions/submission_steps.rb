@@ -52,7 +52,7 @@ When /^I view that submission's series$/ do
 end
 
 Given /^the following submissions for that series:$/ do |table|
-  create_submissions_for_series(table.hashes, last_series)
+  create_submissions_for_series(table.hashes, @series)
 end
 
 Given /^the following submissions and series:$/ do |table|
@@ -64,7 +64,7 @@ Then /^I should see the submissions in the order:$/ do |table|
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|
-  verify_submissions_count(last_series, count)
+  verify_submissions_count(@series, count)
 end
 
 Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_name, email|
@@ -73,11 +73,11 @@ Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_n
 end
 
 Given /^a submission exists for that series$/ do
-  Factory(:submission, :series => last_series)
+  Factory(:submission, :series => @series)
 end
 
 Given /^that series has a submission "([^"]*)"$/ do |name|
-  Factory(:submission, :name => name, :series => last_series)
+  Factory(:submission, :name => name, :series => @series)
 end
 
 When /^I try to create a submission without a name$/ do

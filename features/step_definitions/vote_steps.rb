@@ -1,5 +1,5 @@
 Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
-  submission = Factory(:submission, :name => submission_name, :series => last_series)
+  submission = Factory(:submission, :name => submission_name, :series => @series)
   plus_votes.times do
     Factory(:plus_vote, :submission => submission)
   end
@@ -9,7 +9,7 @@ Given /^that series has a submission "([^"]*)" with (\d+) plus votes and (\d+) m
 end
 
 Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  submission = Factory(:submission, :name => submission_name, :series => last_series)
+  submission = Factory(:submission, :name => submission_name, :series => @series)
 end
 
 Then /^I should see "([^"]*)" with (\d+) plus votes and (\d+) minus votes$/ do |submission_name, plus_votes, minus_votes|
@@ -46,6 +46,12 @@ Given /^I have voted (on|for|against) that submission$/ do |position|
   submission = last_submission
   series_page.visit submission.series
   series_page.vote_on_submission submission, position
+end
+
+Given /^I have voted on the submission "([^"]*)" in that series$/ do |submission_name|
+  submission = @series.submissions.find_by_name(submission_name)
+  series_page.visit @series
+  series_page.vote_on_submission submission, 'for'
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|

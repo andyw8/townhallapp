@@ -24,11 +24,14 @@ Feature: Featured submission
     Then the featured submission should be "Submission 1"
 
   Scenario: A series with two submissions, one of which I've voted on
-    And that series has a submission "Submission 1"
+  
+    The featured submission should not one which the user has already voted on
+  
+    Given that series has a submission "Submission 1"
     And that series has a submission "Submission 2"
-    And I have voted on that submission
+    And I have voted on the submission "Submission 2" in that series
     When I view that series
-    # Then the featured submission should be "Submission 1"
+    Then the featured submission should be "Submission 1"
 
   Scenario: A series with one submission, which I've voted on
      And that series has a submission "Submission 1"
