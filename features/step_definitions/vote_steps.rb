@@ -1,5 +1,5 @@
-Given /^that series has a submission "([^"]*)" with (\d+) plus votes? and (\d+) minus votes?$/ do |submission_name, plus_votes, minus_votes|
-  submission = Factory(:submission, :name => submission_name, :series => @series)
+Given /^that series has a submission "([^"]*)" with (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |submission_name, plus_votes, minus_votes|
+  @submission = Factory(:submission, :name => submission_name, :series => @series)
   plus_votes.times do
     Factory(:plus_vote, :submission => submission)
   end
@@ -8,14 +8,33 @@ Given /^that series has a submission "([^"]*)" with (\d+) plus votes? and (\d+) 
   end
 end
 
-Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  submission = Factory(:submission, :name => submission_name, :series => @series)
+Given /^that series has a submission with (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |plus_votes, minus_votes|
+  @submission = Factory(:submission, :series => @series)
+  plus_votes.times do
+    Factory(:plus_vote, :submission => @submission)
+  end
+  minus_votes.times do
+    Factory(:minus_vote, :submission => @submission)
+  end
 end
 
-Then /^"([^"]*)" should have (\d+) plus votes? and (\d+) minus votes?$/ do |submission_name, plus_votes, minus_votes|
+Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
+  @submission = Factory(:submission, :name => submission_name, :series => @series)
+end
+
+Given /^that series has a submission with no votes$/ do
+  @submission = Factory(:submission, :series => @series)
+end
+
+Then /^"([^"]*)" should have (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)?$/ do |submission_name, plus_votes, minus_votes|
   submission = Submission.find_by_name(submission_name)
   series_page.plus_vote_count(submission).should == plus_votes
   series_page.minus_vote_count(submission).should == minus_votes
+end
+
+Then /^that submission should have (\d+) plus vote(?:s?) and (\d+) minus vote(?:s?)$/ do |plus_votes, minus_votes|
+  series_page.plus_vote_count(@submission).should == plus_votes
+  series_page.minus_vote_count(@submission).should == minus_votes
 end
 
 When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submission_name|
@@ -24,6 +43,14 @@ end
 
 When /^I vote for "([^"]*)"$/ do |submission_name|
   series_page.click_button_for_submission("Vote For", submission_name)
+end
+
+When /^I vote for that submission$/ do
+  series_page.click_button_for_submission("Vote For", @submission.name)
+end
+
+When /^I vote against that submission$/ do
+  series_page.click_button_for_submission("Vote Against", @submission.name)
 end
 
 When /^I vote against "([^"]*)"$/ do |submission_name|
@@ -39,21 +66,23 @@ Then /^I should not see a Vote button next to "([^"]*)"$/ do |submission_name|
   series_page.should_not have_vote_button(submission)
 end
 
+Then /^I should not see a Vote button next to that submission$/ do
+  series_page.should_not have_vote_button(@submission)
+end
+
 Then /^I should not see a vote review for that submission$/ do
-  submission = last_submission
-  visit series_path(submission.series)
-  series_page.should_not have_vote_review(submission)
+  visit series_path(@submission.series)
+  series_page.should_not have_vote_review(@submission)
 end
 
 Given /^(?:a|another) user has voted for that submission$/ do
-  Factory(:vote, :vote => 'PLUS', :submission =>last_submission)
+  Factory(:vote, :vote => 'PLUS', :submission => @submission)
 end
 
 Given /^I have voted (on|for|against) that submission$/ do |position|
   position = "for" if position == "on"
-  submission = last_submission
-  visit series_path(submission.series)
-  series_page.vote_on_submission submission, position
+  visit series_path(@submission.series)
+  series_page.vote_on_submission @submission, position
 end
 
 Given /^I have voted on the submission "([^"]*)" in that series$/ do |submission_name|
@@ -63,7 +92,6 @@ Given /^I have voted on the submission "([^"]*)" in that series$/ do |submission
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
-  submission = last_submission
-  visit series_path(submission.series)
-  series_page.vote_review_text(submission).should == review
+  visit series_path(@submission.series)
+  series_page.vote_review_text(@submission).should == review
 end

@@ -1,7 +1,3 @@
-def last_submission
-  Submission.last
-end
-
 def verify_submissions_count(series, count)
   visit series_path(series)
   series_page.submissions_count.should == count
@@ -44,11 +40,11 @@ Given /^no are no submissions for that series$/ do
 end
 
 Given /^a submission exists$/ do
-  Factory(:submission)
+  @submission = Factory(:submission)
 end
 
 When /^I view that submission's series$/ do
-  visit series_path(last_submission.series)
+  visit series_path(@submission.series)
 end
 
 Given /^the following submissions for that series:$/ do |table|
@@ -73,11 +69,11 @@ Then /^I should see that the author of "([^"]*)" is "([^"]*)"$/ do |submission_n
 end
 
 Given /^a submission exists for that series$/ do
-  Factory(:submission, :series => @series)
+  @submission = Factory(:submission, :series => @series)
 end
 
 Given /^that series has a submission "([^"]*)"$/ do |name|
-  Factory(:submission, :name => name, :series => @series)
+  @submission = Factory(:submission, :name => name, :series => @series)
 end
 
 When /^I try to create a submission without a name$/ do
@@ -90,7 +86,7 @@ end
 
 Then /^that submission should have (\d+) votes$/ do |count|
   # should verify through UI, not DB
-  last_submission.votes_count.should == count
+  @submission.votes_count.should == count
 end
 
 When /^I post a submission "([^"]*)"$/ do |name|

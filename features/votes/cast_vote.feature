@@ -12,10 +12,10 @@ Feature: Cast vote
     Users can vote for a submission
   
     Given a series exists
-    And that series has a submission "My Submission" with no votes
+    And that series has a submission with no votes
     When I view that series
-    And I vote for "My Submission"
-    Then "My Submission" should have 1 plus votes and 0 minus votes
+    And I vote for that submission
+    Then that submission should have 1 plus votes and 0 minus votes
     And I should see the notice "Your vote was recorded"
 
   Scenario: Voting against a submission with no votes
@@ -23,10 +23,10 @@ Feature: Cast vote
     Users can vote against a submission
   
     Given a series exists
-    And that series has a submission "My Submission" with no votes
+    And that series has a submission with no votes
     When I view that series
-    And I vote against "My Submission"
-    Then "My Submission" should have 0 plus votes and 1 minus votes
+    And I vote against that submission
+    Then that submission should have 0 plus votes and 1 minus votes
     And I should see the notice "Your vote was recorded"
 
   Scenario: Attempting to re-vote for a submission
@@ -34,11 +34,11 @@ Feature: Cast vote
     Users cannot vote again for the same submission
   
     Given a series exists
-    And that series has a submission "My Submission" with no votes
+    And that series has a submission with no votes
     When I view that series
-    And I vote for "My Submission"
-    Then "My Submission" should have 1 plus votes and 0 minus votes
-    And I should not see a Vote button next to "My Submission"
+    And I vote for that submission
+    Then that submission should have 1 plus votes and 0 minus votes
+    And I should not see a Vote button next to that submission
 
   Scenario: User signs out then attempts to vote
   
