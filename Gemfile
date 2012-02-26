@@ -17,7 +17,7 @@ group :development do
   gem 'reek'
   gem 'flay'
   gem 'flog'
-  gem 'spork'
+  gem 'rb-fsevent' # Mac only
 end
 
 group :development, :test do
@@ -28,8 +28,8 @@ group :development, :test do
   gem 'database_cleaner' # needed by cucumber
   gem 'factory_girl_rails'
   gem 'rails-footnotes', '>= 3.7'
-  gem 'rb-fsevent' # Mac only
   gem 'rspec-rails'
   gem 'shoulda', '>= 3.0.0.beta'
+  gem 'spork'
   gem 'sqlite3'
 end
