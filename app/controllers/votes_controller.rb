@@ -4,7 +4,7 @@ class VotesController < ApplicationController
 
   def create
     vote = submission.record_vote(params[:vote], current_user)
-    redirect_to series_url(submission.series), :notice => Vote.SUCCESS_MESSAGE
+    redirect_to series_url(submission.series), :notice => Vote::SUCCESS_MESSAGE
   end
 
   private

@@ -49,7 +49,7 @@ class Submission < ActiveRecord::Base
   end
 
   def record_vote(vote, user)
-    votes.new(:vote => vote)
+    vote = votes.new(:vote => vote)
     vote.user = user
     vote.save!
   end
