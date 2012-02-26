@@ -1,5 +1,7 @@
 class Vote < ActiveRecord::Base
 
+  SUCCESS_MESSAGE = "Your vote was recorded"
+
   attr_accessible :vote
 
   validates_presence_of :vote, :user, :submission

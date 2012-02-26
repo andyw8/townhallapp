@@ -3,10 +3,8 @@ class VotesController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    vote = submission.new_vote(params[:vote])
-    vote.user = current_user
-    vote.save!
-    redirect_to series_url(submission.series), :notice => "Your vote was recorded"
+    vote = submission.record_vote(params[:vote], current_user)
+    redirect_to series_url(submission.series), :notice => Vote.SUCCESS_MESSAGE
   end
 
   private

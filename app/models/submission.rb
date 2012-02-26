@@ -48,9 +48,10 @@ class Submission < ActiveRecord::Base
     votes.count
   end
 
-  def new_vote(vote)
-    # should this method really be in Vote ?
+  def record_vote(vote, user)
     votes.new(:vote => vote)
+    vote.user = user
+    vote.save!
   end
 
   private
