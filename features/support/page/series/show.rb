@@ -11,7 +11,7 @@ module Page
       end
 
       def has_featured_submission?
-        has_css?(featured_submission_sel)
+        featured_submission.present?
       end
 
       def feature_submission_name
@@ -19,14 +19,11 @@ module Page
       end
 
       def has_all_voted_on_message?
-        has_css?('.all-voted-on')
+        featured_submission.voted_on?
       end
 
       def click_button_for_submission(button_label, submission_name)
-        submission = ::Submission.find_by_name(submission_name)
-        session.within(submission_sel(submission)) do
-          session.click_button button_label
-        end
+        submissions_list.submissions[submission_name][:buttons][button_label].click
       end
   
       def vote_buttons
@@ -34,27 +31,23 @@ module Page
       end
   
       def vote_review_text(submission)
-        find("#{submission_sel(submission)} .vote-review").text.strip
+        submissions_list.submissions[submission.name][:vote_review]
       end
   
       def plus_vote_count(submission)
-        session.within(submission_sel(submission)) do
-          find('.plus .value').text.to_i
-        end
+        submissions_list.submissions[submission.name][:plus_votes]
       end
 
       def minus_vote_count(submission)
-        session.within(submission_sel(submission)) do
-          find('.minus .value').text.to_i
-        end 
+        submissions_list.submissions[submission.name][:minus_votes]
       end
   
       def has_vote_review?(submission)
-        has_css?("#{submission_sel(submission)} .vote-review")
+        !submissions_list.submissions[submission.name][:vote_review].nil?
       end
 
       def has_vote_button?(submission)
-        has_css?("#{submission_sel(submission)} input[value='Vote']")
+        submissions_list.submissions[submission.name][:has_vote_button]
       end
     
       def submissions_count
@@ -62,11 +55,11 @@ module Page
       end
     
       def submission_author_email(submission)
-        find("#{submission_sel(submission)} .author-name").text
+        submissions_list.submissions[submission.name][:author_name]
       end
     
       def submission_names
-        all('#submissions .name').collect(&:text)
+        submissions_list.names
       end
     
       def follow_new_submission
@@ -80,25 +73,17 @@ module Page
       end
       
       def has_submissions?
-        @submissions_list.present?
+        submissions_list.present?
       end
     
       private
-          
-      def submission_sel(submission)
-        "#submission-#{submission.id}"
-      end
-    
-      def featured_submission_sel
-        '#featured-submission'
-      end
       
       def featured_submission
-        @featured_submission ||= Component::FeaturedSubmission.new(find(featured_submission_sel))
+        @featured_submission ||= Component::FeaturedSubmission.new('#featured-submission')
       end
       
       def submissions_list
-        @submissions_list ||= Component::SubmissionsList.new(find('#submissions'))
+        @submissions_list ||= Component::SubmissionsList.new('#submissions')
       end
 
     end

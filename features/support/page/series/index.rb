@@ -21,7 +21,7 @@ module Page
       private
       
       def series_list
-        @series_list = Component::SeriesList.new(find('#series'))
+        @series_list = Component::SeriesList.new('#series')
       end
 
     end

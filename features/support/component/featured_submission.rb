@@ -11,5 +11,9 @@ module Component
     def author_name
       root.find(".author-name").text
     end
+    
+    def voted_on?
+      root.has_css?('.all-voted-on')
+    end
   end
 end
