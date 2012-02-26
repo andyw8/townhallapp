@@ -30,11 +30,6 @@ def create_submissions_and_series(hashes)
   end
 end
 
-Given /^I am creating a new submission for a series$/ do
-  visit series_path(Factory(:series))
-  series_page.follow_new_submission
-end
-
 Given /^no are no submissions for that series$/ do
   # no code needed
 end
@@ -47,16 +42,8 @@ When /^I view that submission's series$/ do
   visit series_path(@submission.series)
 end
 
-Given /^the following submissions for that series:$/ do |table|
-  create_submissions_for_series(table.hashes, @series)
-end
-
 Given /^the following submissions and series:$/ do |table|
   create_submissions_and_series(table.hashes)
-end
-
-Then /^I should see the submissions in the order:$/ do |table|
-  verify_submissions_order(table.raw.flatten)
 end
 
 Then /^(\d+) submissions should exist for that series$/ do |count|
@@ -81,12 +68,6 @@ When /^I try to create a submission without a name$/ do
   visit series_path(series)
   click_link 'New Submission'
   new_submission_page.create('')
-end
-
-
-Then /^that submission should have (\d+) votes$/ do |count|
-  # should verify through UI, not DB
-  @submission.votes_count.should == count
 end
 
 When /^I post a submission "([^"]*)"$/ do |name|

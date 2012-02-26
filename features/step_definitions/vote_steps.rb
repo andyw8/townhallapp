@@ -1,13 +1,3 @@
-Given /^that series has a submission "([^"]*)" with (\d+) plus votes? and (\d+) minus votes??$/ do |submission_name, plus_votes, minus_votes|
-  @submission = Factory(:submission, :name => submission_name, :series => @series)
-  plus_votes.times do
-    Factory(:plus_vote, :submission => submission)
-  end
-  minus_votes.times do
-    Factory(:minus_vote, :submission => submission)
-  end
-end
-
 Given /^that series has a submission with (\d+) plus votes? and (\d+) minus votes??$/ do |plus_votes, minus_votes|
   @submission = Factory(:submission, :series => @series)
   plus_votes.times do
@@ -18,31 +8,13 @@ Given /^that series has a submission with (\d+) plus votes? and (\d+) minus vote
   end
 end
 
-Given /^that series has a submission "([^"]*)" with no votes$/ do |submission_name|
-  @submission = Factory(:submission, :name => submission_name, :series => @series)
-end
-
 Given /^that series has a submission with no votes$/ do
   @submission = Factory(:submission, :series => @series)
-end
-
-Then /^"([^"]*)" should have (\d+) plus votes? and (\d+) minus votes??$/ do |submission_name, plus_votes, minus_votes|
-  submission = Submission.find_by_name(submission_name)
-  series_page.plus_vote_count(submission).should == plus_votes
-  series_page.minus_vote_count(submission).should == minus_votes
 end
 
 Then /^that submission should have (\d+) plus votes? and (\d+) minus votes?$/ do |plus_votes, minus_votes|
   series_page.plus_vote_count(@submission).should == plus_votes
   series_page.minus_vote_count(@submission).should == minus_votes
-end
-
-When /^I click the "([^"]*)" button next to "([^"]*)"$/ do |button_label, submission_name|
-  series_page.click_button_for_submission(button_label, submission_name)
-end
-
-When /^I vote for "([^"]*)"$/ do |submission_name|
-  series_page.click_button_for_submission("Vote For", submission_name)
 end
 
 When /^I vote for that submission$/ do
@@ -53,17 +25,8 @@ When /^I vote against that submission$/ do
   series_page.click_button_for_submission("Vote Against", @submission.name)
 end
 
-When /^I vote against "([^"]*)"$/ do |submission_name|
-  series_page.click_button_for_submission("Vote Against", submission_name)
-end
-
 Then /^I should not be able to vote$/ do
   series_page.vote_buttons.should be_empty
-end
-
-Then /^I should not see a Vote button next to "([^"]*)"$/ do |submission_name|
-  submission = Submission.find_by_name(submission_name)
-  series_page.should_not have_vote_button(submission)
 end
 
 Then /^I should not see a Vote button next to that submission$/ do

@@ -11,14 +11,6 @@ Then /^I should see a message that I have voted on all the submissions$/ do
   series_page.should have_all_voted_on_message
 end
 
-Then /^I should not see a message that I have voted on all the submissions$/ do
-  series_page.should_not have_all_voted_on_message
-end
-
 Then /^I should not see a featured submission$/ do
   series_page.should_not have_featured_submission
-end
-
-Then /^I should see a featured submission$/ do
-  series_page.should have_featured_submission
 end

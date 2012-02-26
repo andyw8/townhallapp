@@ -28,10 +28,6 @@ Given /^a series exists$/ do
   @series = Factory(:series)
 end
 
-Given /^a series exists named "([^"]*)"$/ do |name|
-  @series = Factory(:series, :name => name)
-end
-
 When /^I view that series$/ do
   visit series_path(@series)
 end
@@ -42,18 +38,6 @@ end
 
 Given /^no series exist$/ do
   Series.delete_all
-end
-
-Given /^I am creating a new series$/ do
-  visit new_series_path
-end
-
-Given /^I leave the "([^"]*)" field blank$/ do |arg1|
-  # no code necessary - this step is to help make the scenario readable
-end
-
-Then /^I should see the series "([^"]*)"$/ do |name|
-  series_index_page.series_names.should_includename
 end
 
 Then /^(\d+) series should exist$/ do |count|
@@ -86,11 +70,6 @@ Then /^the stats for that series should be:$/ do |table|
   actual_values[:users].should == expected_values[:users].to_i
   actual_values[:votes].should == expected_values[:votes].to_i
   actual_values[:submissions].should == expected_values[:submissions].to_i
-end
-
-Then /^that series should have (\d+) votes$/ do |count|
-  # TODO should verify through UI, not DB
-  @series.votes_count.should == count
 end
 
 When /^I try to create a new series$/ do
