@@ -3,7 +3,7 @@ def last_submission
 end
 
 def verify_submissions_count(series, count)
-  series_page.visit(series)
+  visit series_path(series)
   series_page.submissions_count.should == count
 end
 
@@ -35,7 +35,7 @@ def create_submissions_and_series(hashes)
 end
 
 Given /^I am creating a new submission for a series$/ do
-  series_page.visit Factory(:series)
+  visit series_path(Factory(:series))
   series_page.follow_new_submission
 end
 
@@ -48,7 +48,7 @@ Given /^a submission exists$/ do
 end
 
 When /^I view that submission's series$/ do
-  series_page.visit last_submission.series
+  visit series_path(last_submission.series)
 end
 
 Given /^the following submissions for that series:$/ do |table|
@@ -82,7 +82,7 @@ end
 
 When /^I try to create a submission without a name$/ do
   series = Factory(:series)
-  series_page.visit series
+  visit series_path(series)
   click_link 'New Submission'
   new_submission_page.create('')
 end
@@ -108,6 +108,6 @@ Then /^I should not see a New Submission link$/ do
 end
 
 Then /^there should be no submissions for that series$/ do
-  series_page.visit @series
+  visit series_path(@series)
   series_page.should_not have_submissions
 end

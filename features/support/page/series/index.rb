@@ -1,11 +1,6 @@
 module Page
   module Series
     class Index < Page::Base
-
-      def path
-        series_index_path
-      end
-
       def series_count
         series_list.contents.size
       end

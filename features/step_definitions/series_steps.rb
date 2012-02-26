@@ -11,17 +11,17 @@ Given /^the following series:$/ do |table|
 end
 
 Given /^I am on the series index page$/ do
-  series_index_page.visit
+  visit series_index_path
 end
 
 Given /^I am viewing a series$/ do
   @series = create_series
-  series_page.visit @series
+  visit series_path(@series)
 end
 
 When /^I view the series "([^"]*)"$/ do |name|
   series = Series.find_by_name(name)
-  series_page.visit(series)
+  visit series_path(series)
 end
 
 Given /^a series exists$/ do
@@ -33,11 +33,11 @@ Given /^a series exists named "([^"]*)"$/ do |name|
 end
 
 When /^I view that series$/ do
-  series_page.visit @series
+  visit series_path(@series)
 end
 
 When /^I view the series index$/ do
-  series_index_page.visit
+  visit series_index_path
 end
 
 Given /^no series exist$/ do
@@ -45,7 +45,7 @@ Given /^no series exist$/ do
 end
 
 Given /^I am creating a new series$/ do
-  new_series_page.visit
+  visit new_series_path
 end
 
 Given /^I leave the "([^"]*)" field blank$/ do |arg1|
@@ -57,7 +57,7 @@ Then /^I should see the series "([^"]*)"$/ do |name|
 end
 
 Then /^(\d+) series should exist$/ do |count|
-  series_index_page.visit
+  visit series_index_path
   series_index_page.series_count.should == count
 end
 
@@ -75,11 +75,12 @@ When /^I create a new series$/ do
 end
 
 When /^I create a new series "([^"]*)"$/ do |name|
+  visit new_series_path
   new_series_page.create name
 end
 
 Then /^the stats for that series should be:$/ do |table|
-  series_index_page.visit
+  visit series_index_path
   expected_values = table.rows_hash
   actual_values = series_index_page.series_list_contents[@series.name]
   actual_values[:users].should == expected_values[:users].to_i
@@ -93,10 +94,10 @@ Then /^that series should have (\d+) votes$/ do |count|
 end
 
 When /^I try to create a new series$/ do
-  new_series_page.visit
+  visit new_series_path
 end
 
 When /^I try to create a series without a name$/ do
-  new_series_page.visit
+  visit new_series_path
   new_series_page.create ''
 end

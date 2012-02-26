@@ -33,7 +33,7 @@ end
 
 Then /^I should not see a vote review for that submission$/ do
   submission = last_submission
-  series_page.visit submission.series 
+  visit series_path(submission.series)
   series_page.should_not have_vote_review(submission)
 end
 
@@ -44,18 +44,18 @@ end
 Given /^I have voted (on|for|against) that submission$/ do |position|
   position = "for" if position == "on"
   submission = last_submission
-  series_page.visit submission.series
+  visit series_path(submission.series)
   series_page.vote_on_submission submission, position
 end
 
 Given /^I have voted on the submission "([^"]*)" in that series$/ do |submission_name|
   submission = @series.submissions.find_by_name(submission_name)
-  series_page.visit @series
+  visit series_path(@series)
   series_page.vote_on_submission submission, 'for'
 end
 
 Then /^I should see a vote review "([^"]*)" for that submission$/ do |review|
   submission = last_submission
-  series_page.visit submission.series
+  visit series_path(submission.series)
   series_page.vote_review_text(submission).should == review
 end

@@ -1,7 +1,7 @@
 Then /^I should be on the sign\-in page$/ do
-  signin_page.on?.should be_true
+  current_path.should == new_user_session_path
 end
 
 Then /^I should be on the home page$/ do
-  page.current_path.should == home_page.path
+  current_path.should == root_path
 end

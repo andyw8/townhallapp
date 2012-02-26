@@ -1,11 +1,6 @@
 module Page
   module Series
     class Show < Page::Base
-
-      def path(series)
-        series_path(series)
-      end
-    
       def new_submission
         click_link 'New Submission'
       end

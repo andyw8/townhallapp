@@ -1,10 +1,5 @@
 module Page
   class Home < Page::Base
-    
-    def path
-      root_path
-    end
-
   end
 end
 

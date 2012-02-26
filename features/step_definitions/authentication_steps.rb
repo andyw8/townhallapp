@@ -9,7 +9,7 @@ def create_account(email, password=PASSWORD)
 end
 
 def sign_in(email, password=PASSWORD)
-  login_page.visit
+  visit new_user_session_path
   login_page.sign_in(email, password)
 end
 
@@ -23,12 +23,8 @@ Given /^I am authenticated as "([^"]*)"$/ do |email|
   sign_in email
 end
 
-Given /^I am not authenticated$/ do
-  logout_page.visit
-end
-
-Given /^I have signed out|I sign out$/ do
-  logout_page.visit
+Given /^I am not authenticated|I have signed out|I sign out$/ do
+  visit destroy_user_session_path
 end
 
 Given /^I am signed up as "([^"]*)"$/ do |email_and_password|
