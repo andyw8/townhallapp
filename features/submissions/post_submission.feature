@@ -23,7 +23,7 @@ Feature: Post Submission
     And I am viewing a series
     When I try to create a submission without a name
     Then I should see the error "Name can't be blank"
-    And 0 submissions should exist for that series
+    And there should be no submissions for that series
 
   Scenario: Adding a submission when not authenticated
   

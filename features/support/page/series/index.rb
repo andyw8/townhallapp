@@ -7,15 +7,21 @@ module Page
       end
 
       def series_count
-        all('#series li').size
+        series_list.contents.size
       end
 
       def series_names
-        all_series.keys
+        series_list.contents.keys
       end
     
+      def series_list_contents
+        series_list.contents
+      end
+      
+      private
+      
       def series_list
-        Component::SeriesList.new(find('#series')).contents
+        @series_list = Component::SeriesList.new(find('#series'))
       end
 
     end

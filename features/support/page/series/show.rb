@@ -15,7 +15,7 @@ module Page
       end
 
       def feature_submission_name
-        find("#{featured_submission_sel} .name").text
+        featured_submission.name
       end
 
       def has_all_voted_on_message?
@@ -58,7 +58,7 @@ module Page
       end
     
       def submissions_count
-        all('#submissions li').size
+        submissions_list.submissions_count
       end
     
       def submission_author_email(submission)
@@ -78,6 +78,10 @@ module Page
           click_button "Vote #{position.titleize}"
         end
       end
+      
+      def has_submissions?
+        @submissions_list.present?
+      end
     
       private
           
@@ -89,6 +93,14 @@ module Page
         '#featured-submission'
       end
       
+      def featured_submission
+        @featured_submission ||= Component::FeaturedSubmission.new(find(featured_submission_sel))
+      end
+      
+      def submissions_list
+        @submissions_list ||= Component::SubmissionsList.new(find('#submissions'))
+      end
+
     end
   end
 end

@@ -106,3 +106,8 @@ end
 Then /^I should not see a New Submission link$/ do
   should have_no_link('New Submission')
 end
+
+Then /^there should be no submissions for that series$/ do
+  series_page.visit @series
+  series_page.should_not have_submissions
+end

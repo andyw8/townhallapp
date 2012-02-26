@@ -81,7 +81,7 @@ end
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
   expected_values = table.rows_hash
-  actual_values = series_index_page.series_list[@series.name]
+  actual_values = series_index_page.series_list_contents[@series.name]
   actual_values[:users].should == expected_values[:users].to_i
   actual_values[:votes].should == expected_values[:votes].to_i
   actual_values[:submissions].should == expected_values[:submissions].to_i
