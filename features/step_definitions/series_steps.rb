@@ -80,11 +80,11 @@ end
 
 Then /^the stats for that series should be:$/ do |table|
   series_index_page.visit
-  values = table.rows_hash
-  that_series = series_index_page.all_series[@series.name]
-  that_series['users'].should == values['users'].to_i
-  that_series['votes'].should == values['votes'].to_i
-  that_series['submissions'].should == values['submissions'].to_i
+  expected_values = table.rows_hash
+  actual_values = series_index_page.series_list[@series.name]
+  actual_values[:users].should == expected_values[:users].to_i
+  actual_values[:votes].should == expected_values[:votes].to_i
+  actual_values[:submissions].should == expected_values[:submissions].to_i
 end
 
 Then /^that series should have (\d+) votes$/ do |count|
